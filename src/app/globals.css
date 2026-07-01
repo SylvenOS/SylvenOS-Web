@@ -1,26 +1,57 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --bg: #0A1931;
+    --surface: #1A3D63;
+    --primary: #4A7FA7;
+    --border: #B3CFE5;
+    --text: #F6FAFD;
+    --muted: #d6e4ef;
+    --glass: rgba(255, 255, 255, .05);
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  body.light {
+    --bg: #F6FAFD;
+    --surface: #FFFFFF;
+    --primary: #1A3D63;
+    --border: #4A7FA7;
+    --text: #0a1a33;
+    --muted: #45617e;
+    --glass: rgba(255, 255, 255, .9);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    transition: 0.35s;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, #4A7FA725, transparent 70%);
+    top: -250px;
+    left: -250px;
+    z-index: -2;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, #B3CFE530, transparent 70%);
+    bottom: -250px;
+    right: -200px;
+    z-index: -2;
+  }
 }

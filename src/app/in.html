@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Sylven OS</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+:root{
+
+--bg:#0A1931;
+--surface:#1A3D63;
+--primary:#4A7FA7;
+--border:#B3CFE5;
+--text:#F6FAFD;
+--muted:#d6e4ef;
+--glass:rgba(255,255,255,.05);
+
+}
+
+body.light{
+
+--bg:#F6FAFD;
+--surface:#FFFFFF;
+--primary:#1A3D63;
+--border:#4A7FA7;
+--text:#0A1931;
+--muted:#45617e;
+--glass:rgba(255,255,255,.9);
+
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+
+font-family:Inter,sans-serif;
+background:var(--bg);
+color:var(--text);
+transition:.35s;
+overflow-x:hidden;
+
+}
+
+body::before{
+
+content:'';
+position:fixed;
+width:800px;
+height:800px;
+background:radial-gradient(circle,#4A7FA725,transparent 70%);
+top:-250px;
+left:-250px;
+z-index:-2;
+
+}
+
+body::after{
+
+content:'';
+position:fixed;
+width:700px;
+height:700px;
+background:radial-gradient(circle,#B3CFE530,transparent 70%);
+bottom:-250px;
+right:-200px;
+z-index:-2;
+
+}
+
+nav{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:24px 8%;
+
+}
+
+.logo{
+
+font-size:25px;
+font-weight:800;
+
+}
+
+nav ul{
+
+display:flex;
+list-style:none;
+gap:35px;
+align-items:center;
+
+}
+
+nav a{
+
+text-decoration:none;
+color:white;
+opacity:.85;
+transition:.3s;
+
+}
+
+nav a:hover{
+
+opacity:1;
+
+}
+
+.toggle{
+
+width:55px;
+height:30px;
+background:var(--surface);
+border:1px solid var(--border);
+border-radius:50px;
+cursor:pointer;
+position:relative;
+
+}
+
+.toggle::before{
+
+content:"☀️";
+position:absolute;
+width:24px;
+height:24px;
+border-radius:50%;
+background:white;
+display:flex;
+align-items:center;
+justify-content:center;
+top:2px;
+left:2px;
+transition:.3s;
+font-size:12px;
+
+}
+
+body.light .toggle::before{
+
+content:"🌙";
+transform:translateX(24px);
+
+}
+
+.hero{
+margin-top: 50px;
+min-height:88vh;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 8%;
+gap:60px;
+
+}
+
+.left{
+
+max-width:620px;
+
+}
+
+.tag{
+
+display:inline-block;
+padding:8px 18px;
+border-radius:999px;
+background:var(--glass);
+border:1px solid var(--border);
+margin-bottom:30px;
+
+}
+
+h1{
+
+font-size:4rem;
+line-height:1.08;
+margin-bottom:28px;
+
+}
+
+h1 span{
+
+color:var(--primary);
+
+}
+
+.hero p{
+
+font-size:1.1rem;
+line-height:1.8;
+color:var(--muted);
+margin-bottom:40px;
+
+}
+
+.buttons{
+
+display:flex;
+gap:20px;
+
+}
+
+.btn{
+
+padding:15px 32px;
+border-radius:12px;
+text-decoration:none;
+font-weight:600;
+transition:.3s;
+
+}
+
+.primary{
+
+background:var(--primary);
+color:white;
+
+}
+
+.primary:hover{
+
+transform:translateY(-3px);
+
+}
+
+.secondary{
+
+border:1px solid var(--border);
+color:var(--text);
+
+}
+
+.secondary:hover{
+
+background:var(--glass);
+
+}
+
+.card{
+
+width:430px;
+padding:40px;
+background:var(--glass);
+border:1px solid rgba(255,255,255,.1);
+backdrop-filter:blur(20px);
+border-radius:24px;
+
+}
+
+.circle{
+
+width:140px;
+height:140px;
+border-radius:50%;
+margin:auto;
+margin-bottom:30px;
+background:linear-gradient(145deg,#4A7FA7,#1A3D63);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:60px;
+
+}
+
+.feature{
+
+display:flex;
+justify-content:space-between;
+padding:18px 0;
+border-bottom:1px solid rgba(128,128,128,.15);
+
+}
+
+.feature:last-child{
+
+border:none;
+
+}
+
+section{
+
+padding:120px 8%;
+
+}
+
+.section-title{
+
+font-size:2.8rem;
+margin-bottom:15px;
+
+}
+
+.subtitle{
+
+max-width:700px;
+color:var(--muted);
+line-height:1.8;
+margin-bottom:55px;
+
+}
+
+.grid{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:30px;
+
+}
+
+.box{
+
+padding:35px;
+border-radius:18px;
+background:var(--glass);
+border:1px solid rgba(128,128,128,.12);
+transition:.3s;
+
+}
+
+.box:hover{
+
+transform:translateY(-8px);
+border-color:var(--primary);
+
+}
+
+.box h3{
+
+margin-bottom:15px;
+
+}
+
+.box p{
+
+line-height:1.7;
+color:var(--muted);
+
+}
+
+footer{
+
+padding:35px;
+text-align:center;
+border-top:1px solid rgba(128,128,128,.15);
+color:var(--muted);
+
+}
+
+@media(max-width:950px){
+
+.hero{
+
+flex-direction:column;
+text-align:center;
+padding-top:70px;
+
+}
+
+.buttons{
+
+justify-content:center;
+
+}
+
+nav{
+
+flex-direction:column;
+gap:20px;
+ background-color: rgb(255, 255, 255);
+  /* Apply the blur effect to whatever is behind the element */
+  
+
+}
+
+nav ul{
+
+flex-wrap:wrap;
+justify-content:center;
+
+}
+
+h1{
+
+font-size:3rem;
+
+}
+
+.card{
+
+width:100%;
+
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<nav style=" background: #050f1f;
+height: 70px;
+color: white;
+  position: fixed; top: 0; z-index: 1;
+  width: 100%;
+  /* Apply the blur effect to whatever is behind the element */
+  "
+  
+  >
+<div style="display: flex; align-items: center; gap: 10px;" class="logo"><img src="/public/IMG_20260628_143818.png" alt="" width="40px"> Sylven OS</div>
+
+<ul>
+
+<li><a href="#">Home</a></li>
+<li><a href="#">Projects</a></li>
+<li><a href="#">Contributors</a></li>
+<!-- <li><a href="#">Courses</a></li> -->
+<!-- <li><a href="#">Contribute</a></li> -->
+<li><a href="#">About Us</a></li>
+
+<li>
+<div class="toggle" id="themeToggle"></div>
+</li>
+
+</ul>
+
+
+
+</nav>
+
+<section class="hero">
+
+<div class="left">
+
+<div class="tag">
+Community Driven • Open Source
+</div>
+
+<h1>
+From One Seed.<br>
+To A <span>Forest</span> of Builders.
+</h1>
+
+<p>
+Sylven OS is a global community where developers learn, build, contribute, and grow together through open-source collaboration. Every project begins with one idea—and every contributor helps expand the ecosystem.
+</p>
+
+<div class="buttons">
+
+<a class="btn primary" href="#">
+Join Community
+</a>
+
+<a class="btn secondary" href="#">
+Explore Projects
+</a>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="circle">🌲</div>
+
+<div class="feature">
+<span>Members</span>
+<strong>Worldwide</strong>
+</div>
+
+<div class="feature">
+<span>Projects</span>
+<strong>Open Source</strong>
+</div>
+
+<div class="feature">
+<span>Learning</span>
+<strong>Hands-on</strong>
+</div>
+
+<div class="feature">
+<span>Mission</span>
+<strong>Learn • Build • Educate</strong>
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="section-title">
+Why Sylven OS?
+</h2>
+
+<p class="subtitle">
+Every contribution strengthens the ecosystem. Whether you're writing code, documenting projects, designing interfaces, or helping others learn, you're helping grow a forest of knowledge.
+</p>
+
+<div class="grid">
+
+<div class="box">
+<h3>Learn Together</h3>
+<p>Real-world learning through practical open-source development instead of isolated tutorials.</p>
+</div>
+
+<div class="box">
+<h3>Build Together</h3>
+<p>Create production-quality projects that developers can use, improve, and showcase.</p>
+</div>
+
+<div class="box">
+<h3>Grow Together</h3>
+<p>Build your portfolio, network with contributors, and make meaningful impact through collaboration.</p>
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+© 2026 Sylven OS • To Learn. To Build. To Educate.
+
+</footer>
+
+<script>
+
+const body=document.body;
+const toggle=document.getElementById("themeToggle");
+
+const savedTheme=localStorage.getItem("theme");
+
+if(savedTheme){
+
+body.classList.toggle("light",savedTheme==="light");
+
+}else{
+
+const prefersLight=window.matchMedia("(prefers-color-scheme: light)").matches;
+
+body.classList.toggle("light",prefersLight);
+
+}
+
+toggle.onclick=()=>{
+
+body.classList.toggle("light");
+
+localStorage.setItem(
+"theme",
+body.classList.contains("light") ? "light":"dark"
+);
+
+};
+
+</script>
+
+</body>
+</html>
