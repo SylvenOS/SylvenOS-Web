@@ -40,7 +40,10 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 h-[70px] bg-[#050f1f] text-white z-50 flex items-center justify-between px-6 md:px-[8%]">
+    <nav className="fixed left-0 right-0 h-18 w-full  flex justify-center top-1 z-50 px-16">
+      <div className="w-full rounded-[36px] h-full  backdrop-blur-lg bg-[#050f1f]/75 text-white z-50 flex items-center justify-between px-2 md:px-[2%] ">
+        
+      
       {/* Logo Section */}
       <Link
         href="/"
@@ -74,7 +77,7 @@ export default function Navbar() {
 ${
   isActive
     ? "bg-white text-[#0a1a33]"
-    : "text-slate-300 hover:text-white hover:bg-white/5"
+    : "text-slate-300 hover:text-white hover:bg-white/25"
 }`}
               >
                 {link.text}
@@ -123,6 +126,8 @@ ${
           </button>
         </li>
       </ul>
+    
+      </div>
     </nav>
   );
 }
