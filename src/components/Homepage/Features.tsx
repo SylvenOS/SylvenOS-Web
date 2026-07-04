@@ -1,55 +1,42 @@
+import FeaturesList from "./features/FeatureList";
+
 export default function Features() {
   return (
-    <section className="px-6 md:px-[8%] py-[120px]">
-      {/* Section Introduction */}
-      <div className="max-w-[800px] mb-[60px]">
-        <h2 className="text-3xl md:text-[2.5rem] font-bold mb-[25px]">
+    <section className="relative px-6 md:px-[8%] py-[140px] bg-(--secondary) overflow-hidden text-white">
+      
+      {/* Premium Tech Grid Background */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--text)_1px,transparent_1px),linear-gradient(to_bottom,var(--text)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,#000_40%,transparent_100%)] opacity-20 pointer-events-none" />
+      
+      {/* Ambient Radial Glows */}
+      <div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[var(--primary)]/10 blur-[150px] pointer-events-none rounded-full" />
+
+      {/* Header Container */}
+      <div className="relative z-10 max-w-[900px] mx-auto text-center mb-[90px]">
+        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-white/[0.03] border border-(--border) text-(--text) tracking-wide uppercase mb-5">
+          <span className="w-1.5 h-1.5 rounded-full bg-[var(--logo)] animate-pulse" />
+          The Ecosystem
+        </span>
+        
+        <h2 className="text-4xl md:text-[3.5rem] font-black tracking-tight mb-6 bg-gradient-to-b from-(--text)  to-(--text)/75 bg-clip-text text-transparent leading-none">
           What is Sylven OS?
         </h2>
-        <p className="text-lg md:text-[1.2rem] leading-[1.7] text-[var(--text)] mb-6">
+        
+        <p className="text-lg md:text-xl text-(--text) max-w-[700px] mx-auto leading-relaxed mb-6 font-light">
           Sylven OS is an open-source community built around one simple idea:
         </p>
-        <p className="text-xl md:text-[1.5rem] font-semibold text-[var(--primary)] mb-6">
+        
+        <div className="text-xl md:text-2xl font-semibold px-6 py-3 rounded-xl bg-(--glass) border border-(--border)/[0.04] inline-block text-[var(--primary)] tracking-wide shadow-2xl backdrop-blur-md">
           People learn faster when they build together.
-        </p>
-        <p className="text-base md:text-[1.1rem] leading-[1.8] text-[var(--muted)]">
+        </div>
+        
+        <p className="mt-8 text-sm md:text-base text-(--text) max-w-[750px] mx-auto leading-[1.8]">
           Instead of learning technologies in isolation, contributors collaborate 
           on production-ready projects, improve engineering skills, share 
           knowledge, and grow through real-world experience.
         </p>
       </div>
 
-      {/* Grid boxes structure */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-[30px]">
-        
-        {/* Card 1: Learn */}
-        <div className="p-[35px] rounded-[18px] bg-[var(--glass)] border border-gray-500/12 transition-all duration-300 hover:-translate-y-2 hover:border-[var(--primary)] group">
-          <h3 className="text-xl font-bold mb-[15px] text-[var(--primary)]">Learn</h3>
-          <p className="leading-[1.7] text-[var(--muted)]">
-            Go beyond tutorials. Gain hands-on learning by tackling complex 
-            engineering challenges in a collaborative, supportive environment.
-          </p>
-        </div>
-
-        {/* Card 2: Build */}
-        <div className="p-[35px] rounded-[18px] bg-[var(--glass)] border border-gray-500/12 transition-all duration-300 hover:-translate-y-2 hover:border-[var(--primary)] group">
-          <h3 className="text-xl font-bold mb-[15px] text-[var(--primary)]">Build</h3>
-          <p className="leading-[1.7] text-[var(--muted)]">
-            Contribute to real production projects. Write code that solves actual 
-            problems and ships to real users.
-          </p>
-        </div>
-
-        {/* Card 3: Educate */}
-        <div className="p-[35px] rounded-[18px] bg-[var(--glass)] border border-gray-500/12 transition-all duration-300 hover:-translate-y-2 hover:border-[var(--primary)] group">
-          <h3 className="text-xl font-bold mb-[15px] text-[var(--primary)]">Educate</h3>
-          <p className="leading-[1.7] text-[var(--muted)]">
-            Give back to the ecosystem through technical documentation, 
-            tutorials, and active mentorship of fellow developers.
-          </p>
-        </div>
-
-      </div>
+      <FeaturesList/>
     </section>
   );
 }
