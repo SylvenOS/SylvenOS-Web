@@ -14,7 +14,7 @@ import FinalCTA from '@/components/Homepage/CTA';
 export default function Home() {
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <main>
         <Hero />
         <Features />
@@ -27,7 +27,7 @@ export default function Home() {
         <EcosystemRoadmap/>
         <FinalCTA/>
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }
