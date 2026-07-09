@@ -139,7 +139,7 @@ export default function ContributionAreas() {
   };
 
   return (
-    <section className="relative px-6 md:px-[8%] py-[140px] bg-[var(--bg)] overflow-hidden text-[var(--text)]">
+    <section className="relative px-6 md:px-[8%] py-[140px] text-[var(--text)]">
       {/* Subtle Background Accent Lines */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--card-border)_1px,transparent_1px)] bg-[size:10rem] [mask-image:linear-gradient(to_bottom,transparent,#000_20%,#000_80%,transparent)] opacity-[0.05] pointer-events-none" />
 

@@ -82,7 +82,7 @@ export default function CommunityValues() {
   };
 
   return (
-    <section className="relative px-6 md:px-[8%] py-[140px] bg-[var(--bg)] overflow-hidden text-[var(--text)]">
+    <section className="relative px-6 md:px-[8%] py-[140px] text-[var(--text)]">
       {/* Grid Pattern Mesh background */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--card-border)_1px,transparent_1px),linear-gradient(to_bottom,var(--card-border)_1px,transparent_1px)] bg-[size:5rem_5rem] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_40%,transparent_100%)] opacity-[0.08] pointer-events-none" />
 

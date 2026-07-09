@@ -20,6 +20,14 @@ export interface GitHubMember {
   site_admin: boolean;
 }
 
+export interface GitHubPlan {
+  name: string;
+  space: number;
+  private_repos: number;
+  filled_seats: number;
+  seats: number;
+}
+
 export interface GitHubOrgData {
   login: string;
   id: number;
@@ -49,17 +57,45 @@ export interface GitHubOrgData {
   html_url: string;
   created_at: string;
   updated_at: string;
-  type: string;
+  archived_at: string | null;
+  type: "Organization" | string;
   total_private_repos: number;
   owned_private_repos: number;
-  plan?: {
-    name: string;
-    space: number;
-    private_repos: number;
-    filled_seats: number;
-    seats: number;
-  };
-  [key: string]: any;
+  private_gists: number | null;
+  disk_usage: number | null;
+  collaborators: number | null;
+  billing_email: string | null;
+  default_repository_permission: string | null;
+  members_can_create_repositories: boolean;
+  two_factor_requirement_enabled: boolean | null;
+  members_allowed_repository_creation_type: string;
+  members_can_create_public_repositories: boolean;
+  members_can_create_private_repositories: boolean;
+  members_can_create_internal_repositories: boolean;
+  members_can_create_pages: boolean;
+  members_can_fork_private_repositories: boolean;
+  web_commit_signoff_required: boolean;
+  deploy_keys_enabled_for_repositories: boolean;
+  members_can_delete_repositories: boolean;
+  members_can_change_repo_visibility: boolean;
+  members_can_invite_outside_collaborators: boolean;
+  members_can_delete_issues: boolean;
+  display_commenter_full_name_setting_enabled: boolean;
+  readers_can_create_discussions: boolean;
+  members_can_create_teams: boolean;
+  members_can_view_dependency_insights: boolean;
+  default_repository_branch: string;
+  members_can_create_public_pages: boolean;
+  members_can_create_private_pages: boolean;
+  plan: GitHubPlan;
+}
+
+export interface GitHubMemberData {
+  id: number;
+  login: string;
+  avatar_url: string;
+  html_url: string;
+  name: string | null; // Nullable if the profile display name isn't set
 }
 
 export interface GitHubStatsPayload {
@@ -82,4 +118,30 @@ export interface GitHubContributor {
 export interface TopContributorsProps {
   contributors: GitHubContributor[];
   limit?: number;
+}
+
+export interface RepoContribution {
+  repoName: string;
+  contributions: number;
+}
+
+export interface ContributionActivity {
+  id: string;
+  repoName: string;
+  type: "PullRequest" | "Commit" | "Issue" | "CodeReview";
+  title: string; // Commit message, PR title, or Issue subject
+  timestamp: string; // e.g., "2 hours ago" or "July 08"
+  url: string; // Direct web hyperlink to the GitHub asset
+}
+
+export interface AggregatedContributor {
+  login: string;
+  id: number;
+  avatar_url: string;
+  html_url: string;
+  totalContributions: number;
+  rank: number;
+  repoBreakdown: RepoContribution[];
+  recentActivity: ContributionActivity[]; // The semantic "what" array
+  name?: string;
 }
