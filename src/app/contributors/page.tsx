@@ -7,6 +7,8 @@ import MainContributors from '@/components/Contributors/MainContributors';
 import ContributorRoles from '@/components/Contributors/Roles';
 import { getGithubStats } from '@/lib/github';
 import { getOrganizationRankings } from '../api/contributors/route';
+import RecognitionRewards from '@/components/Contributors/RecognitionRewards';
+import BecomeContributorCTA from '@/components/Contributors/BecomeContributorCTA';
 
 export const revalidate = 3600;
 
@@ -21,9 +23,11 @@ const Contribute = async() => {
         <CommunityOverview stats={stats} />
         <ContributionPhilosophy/>
         <ContributorRoles/>
-        <DynamicCoreTeam members={stats.membersData} orgDescription={stats.orgData?.description} />
         <OrganizationRankings rankedContributors={dynamicRankings}/>
-        <MainContributors githubPayload={stats.membersData}/>
+        <DynamicCoreTeam members={stats.membersData} orgDescription={stats.orgData?.description} />
+        <RecognitionRewards/>
+        <BecomeContributorCTA/>
+        {/* <MainContributors githubPayload={stats.membersData}/> */}
     </main>
   )
 }

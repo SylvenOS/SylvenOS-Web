@@ -80,7 +80,7 @@ export default function OrganizationRankings({ rankedContributors = [] }: Organi
                     className="w-16 h-16 rounded-full border-2 bg-[var(--bg)] object-cover transition-colors" 
                     style={{ borderColor: accentColor }} 
                   />
-                  {isFirst && <span className="absolute -top-2 -right-1.5 rota text-base animate-bounce">👑</span>}
+                  {isFirst && <span className="absolute -top-5 right-5  text-base animate-bounce">👑</span>}
                 </div>
 
                 {/* Username Header targeting hover systems */}

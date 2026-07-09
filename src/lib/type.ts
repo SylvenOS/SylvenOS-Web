@@ -105,6 +105,14 @@ export interface GitHubStatsPayload {
   orgData: GitHubOrgData;
 }
 
+// Type contract mapping to stats payload inside src/app/contributors/page.tsx
+export interface GitHubStatsResponse {
+  repos: number;
+  contributors: number;
+  orgData: GitHubOrgData;
+  membersData: GitHubMemberData[];
+}
+
 export interface GitHubContributor {
   login: string;
   id: number;
