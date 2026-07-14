@@ -101,7 +101,7 @@ export default function ProjectCategories() {
   ];
 
   return (
-    <section className="relative px-6 md:px-[8%] py-[120px] bg-[var(--bg)] overflow-hidden text-[var(--text)]">
+    <section className="relative px-6 md:px-[8%] py-[120px]  text-[var(--text)]">
       {/* Background Spatial Structure Layout */}
       <div className="absolute inset-0 bg-[linear-gradient(to_bottom,var(--card-border)_1px,transparent_1px)] bg-[size:100%_6rem] opacity-[0.02] pointer-events-none" />
 
@@ -114,7 +114,7 @@ export default function ProjectCategories() {
       <div className="max-w-6xl mx-auto relative z-10">
         
         {/* Section Heading Panel */}
-        <div className="text-left max-w-2xl mb-20">
+        <div className="text-center max-w-2xl mx-auto mb-20">
           <motion.span
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}

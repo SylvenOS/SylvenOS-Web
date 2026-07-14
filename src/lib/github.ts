@@ -143,3 +143,187 @@ export async function getEcosystemStats(orgName: string) {
     return { repositories: 1, contributors: 0, projects: 1 };
   }
 }
+
+export interface FeaturedProjectData {
+  name: string;
+  description: string;
+  avatarUrl: string;
+  status: "Active" | "Beta" | "Archived";
+  difficulty: "Beginner" | "Intermediate" | "Advanced";
+  techStack: string[];
+  lastUpdated: string;
+  openIssues: number;
+  repoUrl: string;
+  docsUrl: string;
+}
+
+export async function getFeaturedProjects(orgName: string): Promise<FeaturedProjectData[]> {
+  try {
+    // Fetch all repositories sorted by recent updates
+    const { data: repos } = await octokit.rest.repos.listForOrg({
+      org: orgName,
+      type: "public",
+      sort: "updated",
+      per_page: 20,
+    });
+
+    // Filter to only display repositories tagged with the 'featured' topic
+    const featuredRepos = repos.filter(repo => repo.topics?.includes("featured")).slice(0, 6);
+
+    return featuredRepos.map((repo) => {
+      const topics = repo.topics || [];
+
+      // Parse status out of GitHub topics (e.g., status-active -> Active)
+      const statusTopic = topics.find(t => t.startsWith("status-"));
+      const status = statusTopic 
+        ? (statusTopic.split("-")[1].charAt(0).toUpperCase() + statusTopic.split("-")[1].slice(1)) as any
+        : "Active";
+
+      // Parse difficulty out of GitHub topics (e.g., difficulty-intermediate -> Intermediate)
+      const diffTopic = topics.find(t => t.startsWith("difficulty-"));
+      const difficulty = diffTopic
+        ? (diffTopic.split("-")[1].charAt(0).toUpperCase() + diffTopic.split("-")[1].slice(1)) as any
+        : "Intermediate";
+
+      // Filter out meta topics to leave pure technical stacks
+      const techStack = topics.filter(t => !t.includes("featured") && !t.startsWith("status-") && !t.startsWith("difficulty-"));
+
+      // Format timestamp into clean, friendly text format
+      const lastUpdated = new Date(repo.updated_at || "").toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+        year: "numeric"
+      });
+
+      return {
+        name: repo.name,
+        description: repo.description || "No project description provided yet.",
+        avatarUrl: repo.owner.avatar_url,
+        status,
+        difficulty,
+        techStack: techStack.length > 0 ? techStack : ["TypeScript"],
+        lastUpdated,
+        openIssues: repo.open_issues_count || 0,
+        repoUrl: repo.html_url,
+        docsUrl: repo.homepage || `${repo.html_url}/wiki`, // Fallback to GitHub Wiki if homepage isn't set
+      };
+    });
+  } catch (error) {
+    console.error("Failed to query GitHub repository structures:", error);
+    return [];
+  }
+}
+
+export interface ProjectRepositoryData {
+  name: string;
+  description: string;
+  avatarUrl: string;
+  status: "Active" | "Planning" | "Completed" | "Archived";
+  difficulty: "Beginner" | "Intermediate" | "Advanced";
+  techStack: string[];
+  language: string;
+  stars: number;
+  contributorsCount: number;
+  license: string;
+  createdAt: string;
+  updatedAt: string;
+  repoUrl: string;
+  docsUrl: string;
+}
+
+export async function getAllProjects(orgName: string): Promise<ProjectRepositoryData[]> {
+  try {
+    // 1. Fetch all public repositories from the target GitHub organization
+    const { data: repos } = await octokit.rest.repos.listForOrg({
+      org: orgName,
+      type: "public",
+      per_page: 100,
+    });
+
+    // 2. Filter: Only retain repositories containing explicit ecosystem management tags
+    const taggedRepos = repos.filter((repo) => {
+      return repo.topics?.some(
+        (topic) =>
+          topic.startsWith("status-") ||
+          topic.startsWith("difficulty-") ||
+          topic === "featured"
+      );
+    });
+
+    // 3. Map and resolve telemetry payloads concurrently ONLY for tagged repos
+    const projectPromises = taggedRepos.map(async (repo) => {
+      let contributorsCount = 0;
+
+      try {
+        // Fetch contributors to determine active mesh nodes count
+        const { data: contributors } = await octokit.rest.repos.listContributors({
+          owner: orgName,
+          repo: repo.name,
+          per_page: 100,
+          anon: "false", // Exclude anonymous git commits for statistical integrity
+        });
+        
+        contributorsCount = contributors.filter(c => c.type === "User").length;
+      } catch (err) {
+        // Empty repositories throw a 204/404 contributor error. Fall back to 0 gracefully.
+        console.warn(`Telemetry warning: Skipping contributor index for ${repo.name}`);
+      }
+
+      const topics = repo.topics || [];
+
+      // Parse framework running status (e.g. topic: "status-planning" -> Planning)
+      const statusTopic = topics.find((t) => t.startsWith("status-"));
+      let status: ProjectRepositoryData["status"] = "Active"; 
+      if (statusTopic) {
+        const structuralStatus = statusTopic.split("-")[1];
+        const formattedStatus = structuralStatus.charAt(0).toUpperCase() + structuralStatus.slice(1);
+        if (["Active", "Planning", "Completed", "Archived"].includes(formattedStatus)) {
+          status = formattedStatus as ProjectRepositoryData["status"];
+        }
+      }
+
+      // Parse runtime onboarding difficulty (e.g. topic: "difficulty-beginner" -> Beginner)
+      const difficultyTopic = topics.find((t) => t.startsWith("difficulty-"));
+      let difficulty: ProjectRepositoryData["difficulty"] = "Intermediate"; 
+      if (difficultyTopic) {
+        const structuralDiff = difficultyTopic.split("-")[1];
+        const formattedDiff = structuralDiff.charAt(0).toUpperCase() + structuralDiff.slice(1);
+        if (["Beginner", "Intermediate", "Advanced"].includes(formattedDiff)) {
+          difficulty = formattedDiff as ProjectRepositoryData["difficulty"];
+        }
+      }
+
+      // Clean tech stack names by stripping out control configuration metadata topics
+      const techStack = topics
+        .filter((t) => !t.startsWith("status-") && !t.startsWith("difficulty-") && t !== "featured")
+        .map((t) => {
+          if (t === "nextjs") return "Next.js";
+          if (t === "nodejs") return "Node";
+          if (t === "react") return "React";
+          return t.charAt(0).toUpperCase() + t.slice(1);
+        });
+
+      return {
+        name: repo.name,
+        description: repo.description || "System framework utility layer under development.",
+        avatarUrl: repo.owner.avatar_url,
+        status,
+        difficulty,
+        techStack: techStack.length > 0 ? techStack : [repo.language || "TypeScript"],
+        language: repo.language || "Markdown",
+        stars: repo.stargazers_count || 0,
+        contributorsCount,
+        license: repo.license?.spdx_id || "MIT",
+        createdAt: repo.created_at || new Date().toISOString(),
+        updatedAt: repo.updated_at || new Date().toISOString(),
+        repoUrl: repo.html_url,
+        docsUrl: repo.homepage || `${repo.html_url}/wiki`, 
+      };
+    });
+
+    return await Promise.all(projectPromises);
+  } catch (error) {
+    console.error("Critical Failure: Unable to fetch repository mesh arrays from GitHub:", error);
+    return []; 
+  }
+}
