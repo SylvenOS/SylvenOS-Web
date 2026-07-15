@@ -1,7 +1,8 @@
 "use client";
 
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
+import { TECH_TAXONOMY } from "@/config/taxonomy"; // Import your local map
 
 export interface Project {
   name: string;
@@ -12,45 +13,12 @@ export interface Project {
 
 interface DynamicTechStackProps {
   projects: Project[];
-  // Optional local overrides for rapid prototyping
-  localOverrides?: Record<string, string>;
 }
 
-// Fallback URL to a centralized open-source tech classification catalog
-const REMOTE_TAXONOMY_URL = "https://raw.githubusercontent.com/akshaykurve/tech-taxonomy/main/taxonomy.json"; 
-
-export default function DynamicTechStack({ projects, localOverrides = {} }: DynamicTechStackProps) {
-  const [taxonomy, setTaxonomy] = useState<Record<string, string>>(localOverrides);
+export default function DynamicTechStack({ projects }: DynamicTechStackProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>("ALL");
-  const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  // 1. Fetch Remote Taxonomy Rules on Mount
-  useEffect(() => {
-    async function loadTaxonomy() {
-      try {
-        const response = await fetch(REMOTE_TAXONOMY_URL);
-        if (!response.ok) throw new Error("Network response failed");
-        const remoteData = await response.json();
-        
-        // Merge remote rules with any local engineering overrides
-        setTaxonomy({ ...remoteData, ...localOverrides });
-      } catch (error) {
-        console.warn("Taxonomy fetch failed, falling back to basic classification rules.", error);
-        // Minimal core fallback to prevent breaking the layout if offline
-        setTaxonomy({
-          React: "Frontend", "Next.js": "Frontend", TypeScript: "Frontend",
-          "Node.js": "Backend", GraphQL: "Backend", PostgreSQL: "Database",
-          Docker: "DevOps", Vercel: "DevOps", Figma: "Design", Tailwind: "Design",
-          ...localOverrides
-        });
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    loadTaxonomy();
-  }, [localOverrides]);
-
-  // 2. Dynamic Pipeline Aggregator
+  // Dynamic Pipeline Aggregator
   const aggregatedStats = useMemo(() => {
     const counts: Record<string, number> = {};
     const categories: Record<string, string[]> = {
@@ -59,17 +27,17 @@ export default function DynamicTechStack({ projects, localOverrides = {} }: Dyna
       Database: [],
       DevOps: [],
       Design: [],
-      "Uncategorized Engines": [], // Graceful fallback for brand new tools
+      "Ecosystem Extensions": [], // Automatic catch-all bucket
     };
 
     projects.forEach((project) => {
       project.techStack.forEach((tech) => {
         counts[tech] = (counts[tech] || 0) + 1;
 
-        // Dynamic lookup against the state-driven taxonomy map
-        const category = taxonomy[tech] || "Uncategorized Engines";
+        // Dynamic lookup against the decoupled map
+        const category = TECH_TAXONOMY[tech] || "Ecosystem Extensions";
         
-        // If a new category is introduced in the JSON file dynamically, initialize it
+        // Dynamic initialization for any custom category strings introduced later
         if (!categories[category]) {
           categories[category] = [];
         }
@@ -80,32 +48,23 @@ export default function DynamicTechStack({ projects, localOverrides = {} }: Dyna
       });
     });
 
-    // Sort blocks by active usage frequency
+    // Sort items by active usage frequency
     Object.keys(categories).forEach((cat) => {
       categories[cat].sort((a, b) => counts[b] - counts[a]);
     });
 
     return { counts, categories };
-  }, [projects, taxonomy]);
+  }, [projects]);
 
-  // Extract categories that contain 1 or more technologies
+  // Extract categories that contain 1 or more active technologies
   const activeCategories = useMemo(() => {
     return Object.keys(aggregatedStats.categories).filter(
       (cat) => aggregatedStats.categories[cat].length > 0
     );
   }, [aggregatedStats]);
 
-  if (isLoading) {
-    return (
-      <div className="w-full py-20 flex flex-col items-center justify-center font-mono text-xs text-[var(--disabled)]">
-        <div className="animate-spin rounded-full h-5 w-5 border border-[var(--primary)] border-t-transparent mb-4" />
-        PANEL_INITIALIZATION // RUNNING_TAXONOMY_PARSER...
-      </div>
-    );
-  }
-
   return (
-    <section className="relative px-6 md:px-[8%] py-[100px]  text-[var(--text)]">
+    <section className="relative px-6 md:px-[8%] py-[100px] bg-[var(--bg)] text-[var(--text)] overflow-hidden">
       <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.012)_1px,transparent_1px)] bg-[size:100px_100px] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto relative z-10">
@@ -114,7 +73,7 @@ export default function DynamicTechStack({ projects, localOverrides = {} }: Dyna
         <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-[var(--card-border)] pb-8 mb-12 gap-6">
           <div className="max-w-xl text-left">
             <span className="text-xs font-mono font-bold tracking-widest text-[var(--primary)] uppercase block mb-3">
-              // DECOUPLED_TAXONOMY_ROUTING
+              // DYNAMIC_TAXONOMY_ROUTING
             </span>
             <h2 className="text-3xl font-black tracking-tight text-[var(--heading)] mb-3">
               System Architecture Matrix
@@ -124,7 +83,7 @@ export default function DynamicTechStack({ projects, localOverrides = {} }: Dyna
             </p>
           </div>
 
-          {/* Filtering Controller Matrix */}
+          {/* Filtering Tabs */}
           <div className="flex flex-wrap gap-1.5 font-mono text-[10px]">
             <button
               onClick={() => setSelectedCategory("ALL")}
@@ -152,7 +111,7 @@ export default function DynamicTechStack({ projects, localOverrides = {} }: Dyna
           </div>
         </div>
 
-        {/* Dynamic Matrix Viewports */}
+        {/* Matrix Grid Layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
           {activeCategories
             .filter((cat) => selectedCategory === "ALL" || selectedCategory === cat)
