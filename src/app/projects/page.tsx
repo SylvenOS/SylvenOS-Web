@@ -1,6 +1,9 @@
 import ProjectExplorer from "@/components/Projects/AllProjects";
 import ProjectCategories from "@/components/Projects/Categories";
+import ContributionGuide from "@/components/Projects/ContributionGuide";
+import StartContributingCTA from "@/components/Projects/CTAprojects";
 import DynamicTechStack from "@/components/Projects/DynamicTech";
+import FAQSection from "@/components/Projects/Faqs";
 import FeaturedProjects from "@/components/Projects/FeaturedProjects";
 import HeroSection from "@/components/Projects/ProjectHeroSection";
 import ProjectLifecycle from "@/components/Projects/ProjectLifeCycle";
@@ -28,6 +31,9 @@ export default async function Page() {
       <ProjectExplorer projects={allProjects}/>
       <ProjectLifecycle/>
       <DynamicTechStack projects={allProjects}/>
+      <ContributionGuide/>
+      <FAQSection/>
+      <StartContributingCTA/>
     </main>
   );
 };
