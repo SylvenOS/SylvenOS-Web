@@ -9,7 +9,7 @@ export interface CustomMetadata {
 }
 
 export const localProjectRegistry: Record<string, CustomMetadata> = {
-  "sylven-web": {
+  "sylvenos-web": {
     overview: "FocusHub is our flagship performance-monitoring and productivity terminal. It orchestrates real-time process monitoring, system telemetry, and contextual focus metrics directly from your developer workflow.",
     goals: [
       "Optimize local telemetry parsing down to sub-10ms overhead",
