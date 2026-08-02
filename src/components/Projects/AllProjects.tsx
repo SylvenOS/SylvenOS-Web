@@ -104,10 +104,10 @@ export default function ProjectExplorer({ projects = [] }: ProjectExplorerProps)
                 onChange={(e) => setSortBy(e.target.value)}
                 className="w-full px-4 py-3 rounded-[var(--radius-sm)] bg-[var(--bg)] border border-[var(--card-border)] text-sm font-mono focus:outline-none focus:border-[var(--primary)] text-[var(--text)] transition-all appearance-none cursor-pointer"
               >
-                <option value="recently-updated">SORT // RECENTLY UPDATED</option>
-                <option value="newest">SORT // NEWEST ARCHITECTURES</option>
-                <option value="most-contributors">SORT // MOST CONTRIBUTORS</option>
-                <option value="alphabetical">SORT // ALPHABETICAL (A-Z)</option>
+                <option value="recently-updated">RECENTLY UPDATED</option>
+                <option value="newest">NEWEST ARCHITECTURES</option>
+                <option value="most-contributors">MOST CONTRIBUTORS</option>
+                <option value="alphabetical">ALPHABETICAL (A-Z)</option>
               </select>
             </div>
           </div>
@@ -244,15 +244,15 @@ export default function ProjectExplorer({ projects = [] }: ProjectExplorerProps)
         <div className="w-full">
           <div className="grid grid-cols-3 gap-2 border-t border-[var(--card-border)] pt-4 mb-4 font-mono text-[10px] text-center">
             <div>
-              <span className="text-[var(--disabled)] block">LANG //</span>
+              <span className="text-[var(--disabled)] block">LANG</span>
               <span className="text-[var(--subtitle)] font-bold truncate block">{project.language}</span>
             </div>
             <div>
-              <span className="text-[var(--disabled)] block">STARS //</span>
+              <span className="text-[var(--disabled)] block">STARS</span>
               <span className="text-[var(--subtitle)] font-bold">{project.stars}</span>
             </div>
             <div>
-              <span className="text-[var(--disabled)] block">CONTRB //</span>
+              <span className="text-[var(--disabled)] block">CONTRB</span>
               <span className="text-[var(--subtitle)] font-bold">{project.contributorsCount}</span>
             </div>
           </div>
@@ -265,7 +265,7 @@ export default function ProjectExplorer({ projects = [] }: ProjectExplorerProps)
               rel="noopener noreferrer"
               className="py-2.5 px-2 text-center font-mono text-[10px] font-bold rounded border border-[var(--card-border)] hover:bg-[var(--glass)] hover:text-white transition-all uppercase"
             >
-              // Repo
+              Repo ↗
             </a>
             <Link
               href={`/projects/${project.slug}`}

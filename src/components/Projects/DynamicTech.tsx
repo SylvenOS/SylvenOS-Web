@@ -152,7 +152,7 @@ export default function DynamicTechStack({ projects }: DynamicTechStackProps) {
                 </div>
 
                 <div className="mt-6 pt-3 border-t border-[var(--card-border)] font-mono text-[9px] text-[var(--disabled)] flex justify-between items-center">
-                  <span>LAYER_STATUS //</span>
+                  <span>LAYER_STATUS</span>
                   <span className="text-green-400 uppercase font-bold tracking-wider">● SCHEMA_SYNCED</span>
                 </div>
               </motion.div>

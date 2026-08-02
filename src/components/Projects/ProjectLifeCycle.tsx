@@ -237,15 +237,15 @@ export default function ProjectLifecycle() {
                 
                 <div className="grid grid-cols-3 gap-6 border-t border-[var(--card-border)] pt-5 font-mono text-[10px]">
                   <div>
-                    <span className="text-[var(--disabled)] block mb-1">STABILITY LOGICS //</span>
+                    <span className="text-[var(--disabled)] block mb-1">STABILITY LOGICS</span>
                     <span className="text-[var(--heading)] font-bold">{currentStage.telemetry.split(" // ")[1]}</span>
                   </div>
                   <div>
-                    <span className="text-[var(--disabled)] block mb-1">CONTRIBUTION MATRICES //</span>
+                    <span className="text-[var(--disabled)] block mb-1">CONTRIBUTION MATRICES</span>
                     <span className="text-[var(--heading)] font-bold">{currentStage.impact.split(" // ")[1]}</span>
                   </div>
                   <div>
-                    <span className="text-[var(--disabled)] block mb-1">API SURFACE RUNTIME //</span>
+                    <span className="text-[var(--disabled)] block mb-1">API SURFACE RUNTIME</span>
                     <span className={`font-bold ${currentStage.colorTheme.text}`}>{currentStage.apiSurface}</span>
                   </div>
                 </div>
@@ -285,7 +285,7 @@ export default function ProjectLifecycle() {
                 </div>
 
                 <div className="grid grid-cols-2 gap-2 border-t border-[var(--card-border)] pt-4 font-mono text-[9px]">
-                  <span className="text-[var(--disabled)]">METRICICS //</span>
+                  <span className="text-[var(--disabled)]">METRICS</span>
                   <span className={`text-right font-bold ${isCurrentlyActive ? stage.colorTheme.text : "text-[var(--muted)]"}`}>
                     {stage.telemetry.split(" // ")[1]}
                   </span>
