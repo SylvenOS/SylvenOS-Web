@@ -104,7 +104,7 @@ export default function HeroSection() {
             >
              <Link 
     href="#projects"
-    className="inline-block px-8 py-4 rounded-[var(--radius-sm)] bg-[var(--primary)] hover:bg-[var(--hover-bg)] text-white font-bold text-sm tracking-wide shadow-[var(--shadow-md)] hover:shadow-[var(--glow-primary)] border border-transparent hover:border-[var(--primary)] transition-all duration-[var(--transition-fast)] text-center"
+    className="inline-block px-8 py-4 rounded-[var(--radius-sm)] bg-[var(--primary)] text-white font-bold text-sm tracking-wide shadow-[var(--shadow-md)] hover:shadow-[var(--glow-primary)] border border-transparent hover:border-[var(--primary)] transition-all duration-[var(--transition-fast)] text-center"
   >
     Browse Projects
   </Link>
