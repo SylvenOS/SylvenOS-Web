@@ -103,8 +103,7 @@ export default function JoinTheMovement() {
             {/* Primary High-Octane Action Option: Become a Contributor */}
             <motion.button
               whileHover={{ 
-                scale: 1.03, 
-                backgroundColor: "var(--primary-hover)",
+                scale: 1.03,
                 boxShadow: "var(--glow-primary)"
               }}
               whileTap={{ scale: 0.98 }}

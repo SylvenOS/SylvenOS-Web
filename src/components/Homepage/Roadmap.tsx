@@ -114,7 +114,7 @@ export default function EcosystemRoadmap() {
               </div>
 
               {/* Title Header */}
-              <h3 className="text-xl font-bold tracking-tight text-[var(--heading)] mb-6 group-hover:text-white transition-colors duration-[var(--transition-fast)]">
+              <h3 className="text-xl font-bold tracking-tight text-[var(--heading)] mb-6 transition-colors duration-[var(--transition-fast)]">
                 {item.title}
               </h3>
 

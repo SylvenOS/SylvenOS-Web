@@ -124,10 +124,9 @@ export default function CommunityValues() {
             </div>
 
             {/* Value Title */}
-            <h3 className="text-xl font-bold tracking-tight text-[var(--heading)] mb-2.5 group-hover:text-white transition-colors duration-[var(--transition-fast)]">
+            <h3 className="text-xl font-bold tracking-tight text-[var(--heading)] mb-2.5 transition-colors duration-[var(--transition-fast)]">
               {value.title}
             </h3>
-
             {/* Description Paragraph */}
             <p className="text-[14px] md:text-base text-[var(--subtitle)] leading-relaxed font-light">
               {value.description}
