@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { breadcrumbJsonLd } from '@/lib/seo'
+import { breadcrumbJsonLd, webPageJsonLd } from '@/lib/seo'
 import HeroSection from '@/components/AboutUs/AboutHero'
 import CoreValues from '@/components/AboutUs/CoreValues'
 import FutureRoadmap from '@/components/AboutUs/FutureRoadmap'
@@ -33,10 +33,20 @@ export const metadata: Metadata = {
 }
 
 const page = () => {
-  const jsonLd = breadcrumbJsonLd([
-    { name: 'Home', path: '/' },
-    { name: 'About', path: '/about' },
-  ])
+  const jsonLd = [
+    breadcrumbJsonLd([
+      { name: 'Home', path: '/' },
+      { name: 'About', path: '/about' },
+    ]),
+    webPageJsonLd({
+      type: 'AboutPage',
+      name: 'About Sylven OS',
+      description:
+        'The story, mission, vision, and philosophy behind Sylven OS, and how to join the community.',
+      path: '/about',
+      speakableSelectors: ['h1', 'main p:first-of-type'],
+    }),
+  ]
 
   return (
     <main>

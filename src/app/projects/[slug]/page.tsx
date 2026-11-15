@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { getAllProjects } from "@/lib/github";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { absoluteUrl, SITE_NAME } from "@/lib/seo";
+import { absoluteUrl, SITE_NAME, projectJsonLd, webPageJsonLd } from "@/lib/seo";
 
 import { avatarSrc } from "@/lib/avatar";
 interface ProjectDetailsPageProps {
@@ -35,6 +35,10 @@ export async function generateMetadata({ params }: ProjectDetailsPageProps): Pro
     keywords: [project.name, ...project.techStack, "open source", "Sylven OS"],
     alternates: { canonical: `/projects/${project.slug}` },
     openGraph: {
+      type: "article",
+      modifiedTime: project.updatedAt,
+      publishedTime: project.createdAt,
+      authors: [SITE_NAME],
       title,
       description,
       url: `/projects/${project.slug}`,
@@ -59,29 +63,22 @@ export default async function ProjectDetailsPage({ params }: ProjectDetailsPageP
   }
 
   const jsonLd = [
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareSourceCode",
-      name: project.name,
+    ...projectJsonLd(project),
+    webPageJsonLd({
+      type: "WebPage",
+      name: `${project.name} — ${SITE_NAME} Project`,
       description: project.description || project.overview,
-      codeRepository: project.repoUrl,
-      programmingLanguage: project.language,
-      keywords: project.techStack.join(", "),
-      license: project.license,
-      dateCreated: project.createdAt,
+      path: `/projects/${project.slug}`,
       dateModified: project.updatedAt,
-      isPartOf: {
-        "@type": "Organization",
-        name: SITE_NAME,
-        url: absoluteUrl("/"),
-      },
-    },
+      speakableSelectors: ["h1", "[data-speakable]"],
+    }),
     {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Projects", item: absoluteUrl("/projects") },
-        { "@type": "ListItem", position: 2, name: project.name, item: absoluteUrl(`/projects/${project.slug}`) },
+        { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
+        { "@type": "ListItem", position: 2, name: "Projects", item: absoluteUrl("/projects") },
+        { "@type": "ListItem", position: 3, name: project.name, item: absoluteUrl(`/projects/${project.slug}`) },
       ],
     },
   ];
@@ -107,7 +104,7 @@ export default async function ProjectDetailsPage({ params }: ProjectDetailsPageP
           <img src={avatarSrc(project.avatarUrl, 64)} alt={`${project.name} logo`} width={64} height={64} decoding="async" className="w-16 h-16 rounded border" />
           <div>
             <h1 className="text-3xl md:text-5xl font-bold text-[var(--heading)] tracking-tight">{project.name}</h1>
-            <p className="text-sm text-[var(--subtitle)] mt-2">{project.description}</p>
+            <p data-speakable className="text-sm text-[var(--subtitle)] mt-2">{project.description}</p>
           </div>
         </div>
 
@@ -118,7 +115,7 @@ export default async function ProjectDetailsPage({ params }: ProjectDetailsPageP
           <div className="md:col-span-2 space-y-10">
             <section>
               <h2 className="text-xs font-mono text-[var(--accent)] uppercase tracking-wider mb-3">Detailed Overview</h2>
-              <p className="text-base leading-relaxed text-[var(--subtitle)]">{project.overview}</p>
+              <p data-speakable className="text-base leading-relaxed text-[var(--subtitle)]">{project.overview}</p>
             </section>
 
             <section>
@@ -162,6 +159,16 @@ export default async function ProjectDetailsPage({ params }: ProjectDetailsPageP
                   <span className="text-[var(--disabled)]">STARS:</span>
                   <span className="font-bold">{project.stars} ⭐</span>
                 </div>
+                <div className="flex justify-between">
+                  <span className="text-[var(--disabled)]">LICENSE:</span>
+                  <span className="font-bold">{project.license}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-[var(--disabled)]">UPDATED:</span>
+                  <time dateTime={project.updatedAt} className="font-bold">
+                    {new Date(project.updatedAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+                  </time>
+                </div>
               </div>
             </div>
 
@@ -177,6 +184,17 @@ export default async function ProjectDetailsPage({ params }: ProjectDetailsPageP
             </div>
 
             <div className="pt-6 border-t border-[var(--card-border)] space-y-3">
+              {project.liveUrl && (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-center w-full py-2.5 rounded border border-green-500/30 bg-green-500/10 text-green-400 hover:bg-green-500/20 font-mono text-xs font-bold transition-all"
+                >
+                  <span aria-hidden="true" className="inline-block w-1.5 h-1.5 mr-1.5 rounded-full bg-green-400 align-middle" />
+                  Live Site ↗
+                </a>
+              )}
               <a
                 href={project.repoUrl}
                 target="_blank"

@@ -68,6 +68,13 @@ A: Through sustained, high-quality contributions over time; active contributors 
 Q: Where can I ask questions?
 A: In the Sylven OS Discord server: https://discord.com/invite/HNrEcrSBs6
 
+## Crawling and citation policy
+
+- All AI and LLM crawlers (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, Applebot-Extended, CCBot, and others listed in /robots.txt) are explicitly allowed on every public page. Only /api/ is excluded.
+- Content may be quoted and cited with attribution to "Sylven OS" and a link to https://sylvenos.com.
+- Each project page (/projects/{slug}) links to the GitHub repository and, when the project has one, its live deployed site.
+- Every page declares schema.org structured data (Organization, WebSite, WebPage, BreadcrumbList, SoftwareSourceCode, FAQPage, HowTo) tied to the Organization entity https://sylvenos.com/#organization.
+
 ## Notes for AI assistants and answer engines
 
 - All project and contributor statistics on sylvenos.com are generated live from the Sylven OS GitHub organization and refresh at least hourly — treat numeric claims (contributor counts, repo counts) as dynamic, not fixed.

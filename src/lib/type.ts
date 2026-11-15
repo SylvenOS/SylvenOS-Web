@@ -183,6 +183,8 @@ export interface ProjectData {
   updatedAt: string; // ISO 8601 date string
   repoUrl: string;
   docsUrl: string;
+  /** Deployed/live site (GitHub repo "homepage" field). Undefined when none is set. */
+  liveUrl?: string;
   overview: string;
   goals: string[];
   features: string[];
@@ -206,4 +208,5 @@ export interface featuredProjects {
  openIssues: number;
  repoUrl: string;
  docsUrl: string;
+ liveUrl?: string;
 }
