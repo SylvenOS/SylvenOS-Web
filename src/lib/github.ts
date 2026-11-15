@@ -223,11 +223,25 @@ async function fetchFeaturedProjectsRaw(orgName: string) {
         openIssues: repo.open_issues_count || 0,
         repoUrl: repo.html_url,
         docsUrl: repo.homepage || `${repo.html_url}/wiki`,
+        liveUrl: toLiveUrl(repo.homepage),
       };
     });
   } catch (error) {
     console.error("Failed to query GitHub repository structures:", error);
     throw error;
+  }
+}
+
+// Normalises a GitHub repo "homepage" into a safe http(s) URL, or undefined.
+// Bare domains ("example.com") get https://; anything non-http(s) is dropped.
+function toLiveUrl(homepage: string | null | undefined): string | undefined {
+  const value = homepage?.trim();
+  if (!value) return undefined;
+  try {
+    const url = new URL(/^[a-z][a-z0-9+.-]*:/i.test(value) ? value : `https://${value}`);
+    return url.protocol === "http:" || url.protocol === "https:" ? url.toString() : undefined;
+  } catch {
+    return undefined;
   }
 }
 
@@ -286,6 +300,7 @@ async function fetchAllProjectsRaw(orgName: string) {
           updatedAt: repo.updated_at || new Date().toISOString(),
           repoUrl: repo.html_url,
           docsUrl: repo.homepage || `${repo.html_url}/wiki`,
+          liveUrl: toLiveUrl(repo.homepage),
 
           overview: customData?.overview || defaultData.overview,
           goals: customData?.goals || defaultData.goals,

@@ -88,6 +88,17 @@ export function organizationJsonLd() {
     description: SITE_DESCRIPTION,
     slogan: SITE_TAGLINE,
     sameAs: [SOCIAL_LINKS.github, SOCIAL_LINKS.twitter, SOCIAL_LINKS.linkedin, SOCIAL_LINKS.discord],
+    // E-E-A-T: transparent, verifiable signals about who runs the site and how it operates.
+    email: "contact@sylvenos.com",
+    areaServed: "Worldwide",
+    availableLanguage: "English",
+    isAccessibleForFree: true,
+    publishingPrinciples: absoluteUrl("/about"),
+    ethicsPolicy: absoluteUrl("/docs/contributing"),
+    hasPart: [
+      { "@type": "WebPage", name: "Projects", url: absoluteUrl("/projects") },
+      { "@type": "WebPage", name: "Contributors", url: absoluteUrl("/contributors") },
+    ],
     knowsAbout: [
       "Open source software development",
       "Software engineering education",
@@ -208,4 +219,98 @@ export function speakableJsonLd(cssSelectors: string[]) {
       cssSelector: cssSelectors,
     },
   };
+}
+
+// WebPage-family JSON-LD (E-E-A-T + AEO): ties a page to the Organization entity as
+// publisher/author, states language and freshness, and flags speakable summary text.
+export function webPageJsonLd(opts: {
+  type?: "WebPage" | "AboutPage" | "ContactPage" | "CollectionPage" | "ProfilePage";
+  name: string;
+  description: string;
+  path: string;
+  dateModified?: string;
+  speakableSelectors?: string[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": opts.type ?? "WebPage",
+    "@id": absoluteUrl(`${opts.path}#webpage`),
+    url: absoluteUrl(opts.path),
+    name: opts.name,
+    description: opts.description,
+    inLanguage: "en",
+    isPartOf: { "@id": absoluteUrl("/#website") },
+    publisher: { "@id": absoluteUrl("/#organization") },
+    author: { "@id": absoluteUrl("/#organization") },
+    ...(opts.dateModified ? { dateModified: opts.dateModified } : {}),
+    ...(opts.speakableSelectors?.length
+      ? {
+          speakable: {
+            "@type": "SpeakableSpecification",
+            cssSelector: opts.speakableSelectors,
+          },
+        }
+      : {}),
+  };
+}
+
+// SoftwareSourceCode (+ optional live WebApplication) JSON-LD for one project.
+export function projectJsonLd(project: {
+  name: string;
+  slug: string;
+  description: string;
+  repoUrl: string;
+  liveUrl?: string;
+  language: string;
+  techStack: string[];
+  license: string;
+  createdAt: string;
+  updatedAt: string;
+  avatarUrl: string;
+}) {
+  const pageUrl = absoluteUrl(`/projects/${project.slug}`);
+  const org = { "@id": absoluteUrl("/#organization") };
+  return [
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareSourceCode",
+      "@id": `${pageUrl}#source`,
+      name: project.name,
+      description: project.description,
+      url: pageUrl,
+      image: project.avatarUrl,
+      codeRepository: project.repoUrl,
+      programmingLanguage: project.language,
+      keywords: project.techStack.join(", "),
+      license: project.license,
+      dateCreated: project.createdAt,
+      dateModified: project.updatedAt,
+      inLanguage: "en",
+      isAccessibleForFree: true,
+      author: org,
+      publisher: org,
+      maintainer: org,
+      isPartOf: org,
+      ...(project.liveUrl ? { targetProduct: { "@id": `${pageUrl}#app` } } : {}),
+    },
+    ...(project.liveUrl
+      ? [
+          {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "@id": `${pageUrl}#app`,
+            name: project.name,
+            description: project.description,
+            url: project.liveUrl,
+            applicationCategory: "DeveloperApplication",
+            operatingSystem: "Any",
+            isAccessibleForFree: true,
+            offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+            author: org,
+            publisher: org,
+            sameAs: [project.repoUrl],
+          },
+        ]
+      : []),
+  ];
 }

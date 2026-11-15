@@ -174,7 +174,7 @@ export default function FeaturedProjects({
                   </div>
 
                   {/* Actions/Interconnections Array */}
-                  <div className="grid grid-cols-2 gap-2">
+                  <div className={`grid ${project.liveUrl ? "grid-cols-3" : "grid-cols-2"} gap-2`}>
                     <a
                       href={project.repoUrl}
                       target="_blank"
@@ -183,6 +183,18 @@ export default function FeaturedProjects({
                     >
                       Repository
                     </a>
+                    {project.liveUrl && (
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Open live site for ${project.name}`}
+                        className="px-3 py-2.5 text-center font-mono text-xs font-bold rounded-[var(--radius-sm)] border border-green-500/30 bg-green-500/10 text-green-400 hover:bg-green-500/20 transition-colors"
+                      >
+                        <span aria-hidden="true" className="inline-block w-1.5 h-1.5 mr-1 rounded-full bg-green-400 align-middle" />
+                        Live
+                      </a>
+                    )}
                     <a
                       href={project.docsUrl}
                       target="_blank"
