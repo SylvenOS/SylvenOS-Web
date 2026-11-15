@@ -51,6 +51,49 @@ const AI_CRAWLERS = [
   "cohere-training-data-crawler",
   // DuckDuckGo
   "DuckAssistBot",
+  // xAI (Grok)
+  "GrokBot",
+  "xAI-Bot",
+  // Google search + AI surfaces (AI Overviews / Gemini draw on Googlebot's index)
+  "Googlebot",
+  "Googlebot-Image",
+  "Googlebot-News",
+  "Googlebot-Video",
+  "Storebot-Google",
+  "Google-InspectionTool",
+  "GoogleAgent-Mariner",
+  "Google-Read-Aloud",
+  // Chinese AI / search ecosystems (DeepSeek, Qwen, Kimi, Ernie, Doubao draw on these indexes)
+  "Baiduspider",
+  "Sogou web spider",
+  "ChatGLM-Spider",
+  "YisouSpider",
+  "360Spider",
+  // Yandex (YandexGPT / Alice)
+  "YandexBot",
+  "YandexAdditional",
+  "YandexAdditionalBot",
+  // Other search engines that power AI assistants
+  "DuckDuckBot",
+  "Bravebot",
+  "MojeekBot",
+  "Qwantify",
+  "SeznamBot",
+  "Yeti",
+  "AndiBot",
+  "Neevabot",
+  "Kangaroo Bot",
+  "AmazonBuyForMe",
+  "Cloudflare-AutoRAG",
+  // Social / link-preview fetchers (used when links are shared into AI chats and feeds)
+  "Facebot",
+  "facebookexternalhit",
+  "LinkedInBot",
+  "Twitterbot",
+  "Slackbot",
+  "Discordbot",
+  "TelegramBot",
+  "WhatsApp",
   // Common Crawl (feeds most open LLM training sets)
   "CCBot",
   // Search / answer engines with AI products
