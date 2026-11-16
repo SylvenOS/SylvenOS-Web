@@ -142,12 +142,12 @@ const CARD_GAP = 32;
 function StageBody({ stage }: { stage: LifecycleStage }) {
   return (
     <>
-      <div className="flex items-start justify-between gap-4 mb-5">
+      <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2 mb-5">
         <div>
-          <span className="font-mono text-xs text-[var(--disabled)] tracking-widest block mb-1">
+          <span className="font-mono text-xs text-[var(--disabled)] tracking-wider sm:tracking-widest block mb-1">
             {stage.phase}
           </span>
-          <h3 className="text-2xl font-bold text-[var(--heading)] tracking-tight">
+          <h3 className="text-xl sm:text-2xl font-bold text-[var(--heading)] tracking-tight">
             {stage.badgeText}
           </h3>
         </div>
@@ -163,17 +163,17 @@ function StageBody({ stage }: { stage: LifecycleStage }) {
       </p>
 
       <dl className="grid grid-cols-1 gap-3 border-t border-[var(--card-border)] pt-4 font-mono text-xs">
-        <div className="flex justify-between gap-4">
+        <div className="flex flex-wrap justify-between gap-x-4 gap-y-0.5">
           <dt className="text-[var(--disabled)]">STABILITY</dt>
-          <dd className="text-[var(--heading)] font-bold text-right">{stage.telemetry.split(" // ")[1]}</dd>
+          <dd className="text-[var(--heading)] font-bold break-words">{stage.telemetry.split(" // ")[1]}</dd>
         </div>
-        <div className="flex justify-between gap-4">
+        <div className="flex flex-wrap justify-between gap-x-4 gap-y-0.5">
           <dt className="text-[var(--disabled)]">CONTRIBUTION</dt>
-          <dd className="text-[var(--heading)] font-bold text-right">{stage.impact.split(" // ")[1]}</dd>
+          <dd className="text-[var(--heading)] font-bold break-words">{stage.impact.split(" // ")[1]}</dd>
         </div>
-        <div className="flex justify-between gap-4">
+        <div className="flex flex-wrap justify-between gap-x-4 gap-y-0.5">
           <dt className="text-[var(--disabled)]">API SURFACE</dt>
-          <dd className={`font-bold text-right ${stage.colorTheme.text}`}>{stage.apiSurface}</dd>
+          <dd className={`font-bold break-words ${stage.colorTheme.text}`}>{stage.apiSurface}</dd>
         </div>
       </dl>
     </>
@@ -217,7 +217,7 @@ function PinnedCard({
         opacity,
         boxShadow: isActive ? `0 0 48px ${stage.colorTheme.glow}` : "none",
       }}
-      className={`shrink-0 p-8 rounded-[var(--radius-md)] border bg-[var(--card-bg)] backdrop-blur-sm transition-[border-color,box-shadow] duration-300 ${
+      className={`shrink-0 p-6 lg:p-8 rounded-[var(--radius-md)] border bg-[var(--card-bg)] backdrop-blur-sm transition-[border-color,box-shadow] duration-300 ${
         isActive ? "border-[var(--primary)]" : "border-[var(--card-border)]"
       }`}
     >
@@ -272,10 +272,10 @@ function PinnedLifecycle() {
     <div ref={wrapperRef} style={{ height: `${(TOTAL - 1) * 70 + 100}vh` }}>
       <div
         ref={stickyRef}
-        className="sticky top-0 flex h-screen min-h-[640px] flex-col justify-center gap-10 overflow-hidden pt-20"
+        className="sticky top-0 flex h-svh flex-col justify-center gap-8 overflow-hidden pt-20 lg:gap-10"
       >
         {/* Stepper */}
-        <nav aria-label="Project lifecycle stages" className="relative w-full max-w-6xl mx-auto px-6 md:px-10">
+        <nav aria-label="Project lifecycle stages" className="relative w-full max-w-6xl mx-auto px-4 md:px-10">
           <div className="absolute top-[24px] left-10 right-10 h-[1px] bg-[var(--card-border)]" />
           <m.div
             className="absolute top-[24px] left-10 right-10 h-[1px] origin-left bg-[var(--primary)]"
@@ -306,7 +306,7 @@ function PinnedLifecycle() {
                     {String(index + 1).padStart(2, "0")}
                   </div>
                   <span
-                    className={`mt-3 font-mono text-xs uppercase tracking-wider transition-colors duration-200 ${
+                    className={`mt-3 font-mono text-[10px] uppercase tracking-normal transition-colors duration-200 lg:text-xs lg:tracking-wider ${
                       isSelected ? "font-bold text-[var(--heading)]" : "text-[var(--disabled)] group-hover:text-[var(--subtitle)]"
                     }`}
                   >
@@ -380,7 +380,7 @@ function SwipeLifecycle() {
         tabIndex={0}
         role="region"
         aria-label="Project lifecycle stages, scroll horizontally"
-        className="flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:px-10"
+        className="flex snap-x snap-mandatory scroll-px-4 gap-3 overflow-x-auto px-4 pb-4 max-md:[scrollbar-width:none] max-md:[&::-webkit-scrollbar]:hidden sm:scroll-px-6 sm:gap-4 sm:px-6 md:scroll-px-10 md:px-10"
       >
         {LIFECYCLE_STAGES.map((stage, index) => (
           <div
@@ -388,7 +388,7 @@ function SwipeLifecycle() {
             role="group"
             aria-roledescription="slide"
             aria-label={`Stage ${index + 1} of ${TOTAL}: ${stage.badgeText}`}
-            className={`w-[85%] max-w-[440px] shrink-0 snap-center rounded-[var(--radius-md)] border bg-[var(--card-bg)] p-6 transition-colors ${
+            className={`w-[88%] min-w-[260px] max-w-[440px] shrink-0 snap-center rounded-[var(--radius-md)] border bg-[var(--card-bg)] p-5 transition-colors sm:w-[70%] sm:p-6 md:w-[46%] lg:w-[34%] ${
               index === active ? "border-[var(--primary)]" : "border-[var(--card-border)]"
             }`}
           >
@@ -423,9 +423,10 @@ export default function ProjectLifecycle() {
   const reduceMotion = useReducedMotion();
   const [isWide, setIsWide] = useState(false);
 
-  // Pin-and-scroll only where it feels good: a wide viewport and motion allowed.
+  // Pin-and-scroll only where it fits and feels good: wide AND tall enough, motion allowed.
+  // Phones, landscape tablets and short windows get the native swipe carousel instead.
   useEffect(() => {
-    const query = window.matchMedia("(min-width: 768px)");
+    const query = window.matchMedia("(min-width: 768px) and (min-height: 620px)");
     const update = () => setIsWide(query.matches);
     update();
     query.addEventListener("change", update);
