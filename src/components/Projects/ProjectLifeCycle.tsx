@@ -254,14 +254,23 @@ export default function ProjectLifecycle() {
         </div>
 
         {/* Global Overview Grid Pattern (Active Sync Highlighted) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+        <div className="flex flex-wrap justify-center items-stretch gap-6">
           {LIFECYCLE_STAGES.map((stage, idx) => {
             const isCurrentlyActive = idx === activeStageIndex;
             return (
               <m.div
                 key={stage.id}
                 onClick={() => setActiveStageIndex(idx)}
-                className={`p-6 rounded-[var(--radius-md)] border bg-[var(--card-bg)] flex flex-col justify-between text-left transition-all duration-300 cursor-pointer group ${
+                role="button"
+                tabIndex={0}
+                aria-pressed={isCurrentlyActive}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setActiveStageIndex(idx);
+                  }
+                }}
+                className={`w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] p-6 rounded-[var(--radius-md)] border bg-[var(--card-bg)] flex flex-col justify-between text-left transition-all duration-300 cursor-pointer group ${
                   isCurrentlyActive
                     ? "border-[var(--primary)] shadow-[var(--shadow-sm)] ring-1 ring-[var(--primary)]/30"
                     : "border-[var(--card-border)] hover:bg-[var(--glass)] hover:border-[var(--border)]"

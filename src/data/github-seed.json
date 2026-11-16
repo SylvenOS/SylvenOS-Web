@@ -18,9 +18,10 @@
       "openIssuesCount": 0,
       "license": "MIT",
       "createdAt": "2026-07-01T03:06:17Z",
-      "updatedAt": "2026-11-07T16:05:45Z",
+      "updatedAt": "2026-11-07T16:23:13Z",
       "repoUrl": "https://github.com/SylvenOS/SylvenOS-Web",
       "docsUrl": "https://sylvenos.com",
+      "liveUrl": "https://sylvenos.com/",
       "overview": "SylvenOS-Web is the central interactive web platform and portal for the Sylven OS ecosystem. It delivers real-time project metrics, contributor insights, documentation, and system telemetry through a hyper-responsive Next.js interface.",
       "goals": [
         "Provide an ultra-fast, server-rendered entry point for the Sylven OS developer ecosystem",
@@ -51,9 +52,79 @@
         "percentage": 70,
         "phase": "Phase 2: Active Beta"
       }
+    },
+    {
+      "name": "Github-Studio",
+      "slug": "github-studio",
+      "description": "A visual GitHub profile design studio for creating distinctive developer READMEs with customizable layouts, themes, dynamic stats, animated SVGs, and project showcases.",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/289425715?v=4",
+      "status": "Active",
+      "difficulty": "Intermediate",
+      "techStack": [
+        "Developer-portfolio",
+        "Github-profile-readme",
+        "Github-readme-generator",
+        "Gitstats-api",
+        "Open-source"
+      ],
+      "language": "TypeScript",
+      "stars": 1,
+      "contributorsCount": 2,
+      "openIssuesCount": 0,
+      "license": "MIT",
+      "createdAt": "2026-09-27T19:10:09Z",
+      "updatedAt": "2026-11-12T08:47:17Z",
+      "repoUrl": "https://github.com/SylvenOS/Github-Studio",
+      "docsUrl": "https://githubstudio.sylvenos.com",
+      "liveUrl": "https://githubstudio.sylvenos.com/",
+      "overview": "The Github-Studio module serves as a core infrastructure component within our ecosystem, engineered specifically to handle high-performance operations utilizing modern TypeScript paradigms with near-zero runtime overhead.",
+      "goals": [
+        "Optimize execution performance in TypeScript workloads",
+        "Expose clean, standardized API surfaces for developers",
+        "Expand test suite coverage past the 85% threshold"
+      ],
+      "features": [
+        "Modular runtime configuration settings",
+        "Asynchronous event loop tracking built in TypeScript",
+        "Comprehensive, structured logging and diagnostics out of the box"
+      ],
+      "architecture": [
+        {
+          "layer": "Application Layer",
+          "description": "Primary interfaces and application runtime executed via TypeScript."
+        },
+        {
+          "layer": "Utility Layer",
+          "description": "Localized schema parsing, safety validation, and process optimization modules."
+        }
+      ],
+      "contributionGuide": "We love open-source contributions! To get started on Github-Studio:\n\n1. Fork the repository and create a descriptive branch.\n2. Add your features, bug fixes, or enhancements.\n3. Open a Pull Request back to the master branch. All tests must pass prior to merge consideration.",
+      "currentProgress": {
+        "percentage": 70,
+        "phase": "Phase 2: Active Beta"
+      }
     }
   ],
   "featured-projects-v1:sylvenos": [
+    {
+      "name": "Github-Studio",
+      "description": "A visual GitHub profile design studio for creating distinctive developer READMEs with customizable layouts, themes, dynamic stats, animated SVGs, and project showcases.",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/289425715?v=4",
+      "status": "Active",
+      "difficulty": "Intermediate",
+      "techStack": [
+        "Developer-portfolio",
+        "Github-profile-readme",
+        "Github-readme-generator",
+        "Gitstats-api",
+        "Open-source"
+      ],
+      "lastUpdated": "Nov 12, 2026",
+      "openIssues": 0,
+      "repoUrl": "https://github.com/SylvenOS/Github-Studio",
+      "docsUrl": "https://githubstudio.sylvenos.com",
+      "liveUrl": "https://githubstudio.sylvenos.com/"
+    },
     {
       "name": "SylvenOS-Web",
       "description": "The official web platform for Sylven OS, connecting developers through open-source collaboration, education, and real-world software projects.",
@@ -68,11 +139,12 @@
       "lastUpdated": "Nov 7, 2026",
       "openIssues": 0,
       "repoUrl": "https://github.com/SylvenOS/SylvenOS-Web",
-      "docsUrl": "https://sylvenos.com"
+      "docsUrl": "https://sylvenos.com",
+      "liveUrl": "https://sylvenos.com/"
     }
   ],
   "github-stats-v1": {
-    "repos": 6,
+    "repos": 7,
     "contributors": 16,
     "orgData": {
       "login": "SylvenOS",
@@ -96,7 +168,7 @@
       "is_verified": false,
       "has_organization_projects": true,
       "has_repository_projects": true,
-      "public_repos": 6,
+      "public_repos": 7,
       "public_gists": 0,
       "followers": 19,
       "following": 0,
@@ -105,8 +177,8 @@
       "updated_at": "2026-07-31T03:35:59Z",
       "archived_at": null,
       "type": "Organization",
-      "total_private_repos": 1,
-      "owned_private_repos": 1,
+      "total_private_repos": 0,
+      "owned_private_repos": 0,
       "private_gists": null,
       "disk_usage": null,
       "collaborators": null,
@@ -262,12 +334,16 @@
       "id": 146006585,
       "avatar_url": "https://avatars.githubusercontent.com/u/146006585?v=4",
       "html_url": "https://github.com/akshaykurve",
-      "totalContributions": 70,
+      "totalContributions": 115,
       "rank": 1,
       "repoBreakdown": [
         {
           "repoName": "SylvenOS-Web",
-          "contributions": 56
+          "contributions": 58
+        },
+        {
+          "repoName": "Github-Studio",
+          "contributions": 43
         },
         {
           "repoName": ".github",
@@ -288,124 +364,124 @@
       ],
       "recentActivity": [
         {
-          "id": "70ac88f4383f4d89f39133eb611d4051b06d2341",
+          "id": "61794378f366545e63f60664e90b0517138c5a94",
           "repoName": "SylvenOS-Web",
           "type": "Commit",
-          "title": "feat: add avatar source utility and caching mechanism",
-          "timestamp": "Nov 7, 2026",
-          "url": "https://github.com/SylvenOS/SylvenOS-Web/commit/70ac88f4383f4d89f39133eb611d4051b06d2341"
+          "title": "Enhance SEO and accessibility with structured data and AI crawler updates (#21)",
+          "timestamp": "Nov 15, 2026",
+          "url": "https://github.com/SylvenOS/SylvenOS-Web/commit/61794378f366545e63f60664e90b0517138c5a94"
         },
         {
-          "id": "4ce3d11271c080c8d38c0d8f4267f7c30ad46df1",
-          "repoName": "SylvenOS-Web",
+          "id": "3a88b52a7ec2b9213fe6a717a1fd425781e5ed06",
+          "repoName": "Github-Studio",
           "type": "Commit",
-          "title": "refactor: update section padding and responsiveness across multiple components",
-          "timestamp": "Nov 7, 2026",
-          "url": "https://github.com/SylvenOS/SylvenOS-Web/commit/4ce3d11271c080c8d38c0d8f4267f7c30ad46df1"
+          "title": "Update contributing instructions and enhance CI with pnpm support (#11)",
+          "timestamp": "Nov 15, 2026",
+          "url": "https://github.com/SylvenOS/Github-Studio/commit/3a88b52a7ec2b9213fe6a717a1fd425781e5ed06"
         },
         {
-          "id": "657179bd1065c93afe03faca92ad1335f0311a66",
-          "repoName": "SylvenOS-Web",
+          "id": "4ab655b983badd0e2582ff3b515d453186da422c",
+          "repoName": "Github-Studio",
           "type": "Commit",
-          "title": "refactor: update styles and accessibility attributes across project components",
-          "timestamp": "Nov 7, 2026",
-          "url": "https://github.com/SylvenOS/SylvenOS-Web/commit/657179bd1065c93afe03faca92ad1335f0311a66"
+          "title": "Update contributing instructions and enhance CI with pnpm support (#10)",
+          "timestamp": "Nov 15, 2026",
+          "url": "https://github.com/SylvenOS/Github-Studio/commit/4ab655b983badd0e2582ff3b515d453186da422c"
         },
         {
-          "id": "4db514d334c428d22dfa13fc97f52483cae15995",
-          "repoName": "SylvenOS-Web",
+          "id": "9bc0b2e7509d5b82e61e1790a9ade3e9ffeb3be3",
+          "repoName": "Github-Studio",
           "type": "Commit",
-          "title": "feat(search): add BM25 search engine for UI/UX style guides with design system generation and persistence options",
-          "timestamp": "Nov 7, 2026",
-          "url": "https://github.com/SylvenOS/SylvenOS-Web/commit/4db514d334c428d22dfa13fc97f52483cae15995"
+          "title": "Update CONTRIBUTING.md and CI workflow for pnpm configuration (#8)",
+          "timestamp": "Nov 9, 2026",
+          "url": "https://github.com/SylvenOS/Github-Studio/commit/9bc0b2e7509d5b82e61e1790a9ade3e9ffeb3be3"
         },
         {
-          "id": "a4d9b2b2c3fd676a7361fbd96d124ddda2a9fb11",
-          "repoName": "SylvenOS-Web",
+          "id": "ec0ed3813c766efc959d0d3ab9bdbf3ab832afb3",
+          "repoName": "Github-Studio",
           "type": "Commit",
-          "title": "Merge branch 'main' of https://github.com/SylvenOS/SylvenOS-Web",
-          "timestamp": "Nov 7, 2026",
-          "url": "https://github.com/SylvenOS/SylvenOS-Web/commit/a4d9b2b2c3fd676a7361fbd96d124ddda2a9fb11"
+          "title": "Update CONTRIBUTING.md and CI workflow for pnpm configuration (#7)",
+          "timestamp": "Nov 9, 2026",
+          "url": "https://github.com/SylvenOS/Github-Studio/commit/ec0ed3813c766efc959d0d3ab9bdbf3ab832afb3"
         },
         {
-          "id": "e62230924960370848c4ce1c527f08089e0bac07",
-          "repoName": "SylvenOS-Web",
+          "id": "90910cde63622130a71f00f8dd025fe6226fc1c5",
+          "repoName": "Github-Studio",
           "type": "Commit",
-          "title": "feat: update technology descriptions and categories for clarity and inclusivity",
-          "timestamp": "Sep 26, 2026",
-          "url": "https://github.com/SylvenOS/SylvenOS-Web/commit/e62230924960370848c4ce1c527f08089e0bac07"
+          "title": "Update CONTRIBUTING.md and CI workflow for repository changes (#6)",
+          "timestamp": "Nov 9, 2026",
+          "url": "https://github.com/SylvenOS/Github-Studio/commit/90910cde63622130a71f00f8dd025fe6226fc1c5"
         },
         {
-          "id": "6746da7514e3aac5684049dcd9dba6800f8c88f6",
-          "repoName": "SylvenOS-Web",
+          "id": "47b737ee9b8d1a0d35cced5d29f747fb7778484f",
+          "repoName": "Github-Studio",
           "type": "Commit",
-          "title": "feat: update technology descriptions and categories for clarity and inclusivity",
-          "timestamp": "Sep 26, 2026",
-          "url": "https://github.com/SylvenOS/SylvenOS-Web/commit/6746da7514e3aac5684049dcd9dba6800f8c88f6"
+          "title": "Update CONTRIBUTING.md and CI workflow for repository changes (#5)",
+          "timestamp": "Nov 9, 2026",
+          "url": "https://github.com/SylvenOS/Github-Studio/commit/47b737ee9b8d1a0d35cced5d29f747fb7778484f"
         },
         {
-          "id": "3f127da5428cd1e7e1f9568e565ef50c8fafe6b7",
-          "repoName": "SylvenOS-Web",
+          "id": "4e515dd8cdcfef04a6af9dad04827e2e470333f5",
+          "repoName": "Github-Studio",
           "type": "Commit",
-          "title": "feat: enhance SEO and site structure with new pages and JSON-LD support",
-          "timestamp": "Sep 26, 2026",
-          "url": "https://github.com/SylvenOS/SylvenOS-Web/commit/3f127da5428cd1e7e1f9568e565ef50c8fafe6b7"
+          "title": "fix: update clone instructions in CONTRIBUTING.md to reflect repository name change (#4)",
+          "timestamp": "Nov 9, 2026",
+          "url": "https://github.com/SylvenOS/Github-Studio/commit/4e515dd8cdcfef04a6af9dad04827e2e470333f5"
         },
         {
-          "id": "350a94a987c0b422cc9eebf030865ebabf861a60",
-          "repoName": "SylvenOS-Web",
+          "id": "a0e49505c3564ac5652428f9b36e1c1b8f6d752e",
+          "repoName": "Github-Studio",
           "type": "Commit",
-          "title": "feat: enhance SEO and site structure with new pages and JSON-LD support",
-          "timestamp": "Sep 26, 2026",
-          "url": "https://github.com/SylvenOS/SylvenOS-Web/commit/350a94a987c0b422cc9eebf030865ebabf861a60"
+          "title": "Refactor code structure for improved readability and maintainability",
+          "timestamp": "Nov 9, 2026",
+          "url": "https://github.com/SylvenOS/Github-Studio/commit/a0e49505c3564ac5652428f9b36e1c1b8f6d752e"
         },
         {
-          "id": "c01d8541c9051e1e468f9b5ed4c49b784c39a836",
-          "repoName": "SylvenOS-Web",
+          "id": "5a551ea799749c09f8777acf3ee8f67d9ba1e4e9",
+          "repoName": "Github-Studio",
           "type": "Commit",
-          "title": "feat: update section padding and hover effects across multiple components",
-          "timestamp": "Sep 26, 2026",
-          "url": "https://github.com/SylvenOS/SylvenOS-Web/commit/c01d8541c9051e1e468f9b5ed4c49b784c39a836"
+          "title": "Refactor code structure for improved readability and maintainability",
+          "timestamp": "Nov 8, 2026",
+          "url": "https://github.com/SylvenOS/Github-Studio/commit/5a551ea799749c09f8777acf3ee8f67d9ba1e4e9"
         },
         {
-          "id": "161bcab5430b912860405b054843470bc18e4e08",
-          "repoName": "SylvenOS-Web",
+          "id": "8c34a8615ba15ffbdc6b0bfb69d7a5fb94f1b59c",
+          "repoName": "Github-Studio",
           "type": "Commit",
-          "title": "feat: update section padding and hover effects across multiple components",
-          "timestamp": "Sep 26, 2026",
-          "url": "https://github.com/SylvenOS/SylvenOS-Web/commit/161bcab5430b912860405b054843470bc18e4e08"
+          "title": "refactor: rename ProfileFoundry to GithubStudio across the application",
+          "timestamp": "Nov 8, 2026",
+          "url": "https://github.com/SylvenOS/Github-Studio/commit/8c34a8615ba15ffbdc6b0bfb69d7a5fb94f1b59c"
         },
         {
-          "id": "84797721e0f24d6477b8d5a88bbe2c5c382e8dc8",
-          "repoName": "SylvenOS-Web",
+          "id": "3d46c1ecf574f68c42eb2eb020222a24bdf70fe1",
+          "repoName": "Github-Studio",
           "type": "Commit",
-          "title": "Refactor and enhance SEO, metadata, and error handling across the application",
-          "timestamp": "Sep 25, 2026",
-          "url": "https://github.com/SylvenOS/SylvenOS-Web/commit/84797721e0f24d6477b8d5a88bbe2c5c382e8dc8"
+          "title": "fix: update README links to point to the live ProfileFoundry site",
+          "timestamp": "Nov 8, 2026",
+          "url": "https://github.com/SylvenOS/Github-Studio/commit/3d46c1ecf574f68c42eb2eb020222a24bdf70fe1"
         },
         {
-          "id": "46612df023f42d2a5474bbe50d28508c71948326",
-          "repoName": "SylvenOS-Web",
+          "id": "d5eebedf8c408ff8e5e81b7aabb6c232e5ad1cfc",
+          "repoName": "Github-Studio",
           "type": "Commit",
-          "title": "Refactor and enhance SEO, metadata, and error handling across the application",
-          "timestamp": "Sep 25, 2026",
-          "url": "https://github.com/SylvenOS/SylvenOS-Web/commit/46612df023f42d2a5474bbe50d28508c71948326"
+          "title": "feat: v1.0.0 release",
+          "timestamp": "Nov 8, 2026",
+          "url": "https://github.com/SylvenOS/Github-Studio/commit/d5eebedf8c408ff8e5e81b7aabb6c232e5ad1cfc"
         },
         {
-          "id": "54af6471ee909916a3f13477eb26a32b9c123222",
-          "repoName": "SylvenOS-Web",
+          "id": "7850b5285380c7478e41e59a2d167cd383586973",
+          "repoName": "Github-Studio",
           "type": "Commit",
-          "title": "feat: Update project details and metadata for SylvenOS-Web, enhancing descriptions and goals",
-          "timestamp": "Aug 1, 2026",
-          "url": "https://github.com/SylvenOS/SylvenOS-Web/commit/54af6471ee909916a3f13477eb26a32b9c123222"
+          "title": "refactor: update tests to target the /app route instead of root",
+          "timestamp": "Nov 8, 2026",
+          "url": "https://github.com/SylvenOS/Github-Studio/commit/7850b5285380c7478e41e59a2d167cd383586973"
         },
         {
-          "id": "f335535dd4613e7f0e74c95e3f31fb96b82ba960",
-          "repoName": "SylvenOS-Web",
+          "id": "d1552c80aecc2d6673a436037083384c24aff1ea",
+          "repoName": "Github-Studio",
           "type": "Commit",
-          "title": "feat: Update project details and metadata for SylvenOS-Web, enhancing descriptions and goals",
-          "timestamp": "Aug 1, 2026",
-          "url": "https://github.com/SylvenOS/SylvenOS-Web/commit/f335535dd4613e7f0e74c95e3f31fb96b82ba960"
+          "title": "feat: enhance documentation with tech stack details and system overview",
+          "timestamp": "Nov 8, 2026",
+          "url": "https://github.com/SylvenOS/Github-Studio/commit/d1552c80aecc2d6673a436037083384c24aff1ea"
         }
       ]
     },
@@ -423,7 +499,7 @@
         },
         {
           "repoName": "sylven-secure-app",
-          "contributions": 22
+          "contributions": 21
         },
         {
           "repoName": ".github",
@@ -432,24 +508,28 @@
         {
           "repoName": "github-mastery",
           "contributions": 2
+        },
+        {
+          "repoName": "Github-Studio",
+          "contributions": 1
         }
       ],
       "recentActivity": [
         {
-          "id": "5f09acbd271c5a6ddbb7db5648835317a6b0a0c0",
-          "repoName": "sylven-secure-app",
+          "id": "f88b31d59b91dd44ee4bcf02bf06e46e2af738ef",
+          "repoName": "Github-Studio",
           "type": "Commit",
-          "title": "refactor: remove Hide App feature and Shizuku integration",
-          "timestamp": "Oct 27, 2026",
-          "url": "https://github.com/SylvenOS/sylven-secure-app/commit/5f09acbd271c5a6ddbb7db5648835317a6b0a0c0"
+          "title": "Update CONTRIBUTING.md and CI workflow for pnpm configuration (#9)",
+          "timestamp": "Nov 12, 2026",
+          "url": "https://github.com/SylvenOS/Github-Studio/commit/f88b31d59b91dd44ee4bcf02bf06e46e2af738ef"
         },
         {
-          "id": "353225be3bf49d36608bc6b4e21193cfc367d83f",
+          "id": "0a7586ab24c947bff7affca3323445686f4165ef",
           "repoName": "sylven-secure-app",
           "type": "Commit",
-          "title": "feat: implement App Lock functionality",
-          "timestamp": "Oct 26, 2026",
-          "url": "https://github.com/SylvenOS/sylven-secure-app/commit/353225be3bf49d36608bc6b4e21193cfc367d83f"
+          "title": "chore: configure repository security and contribution workflows",
+          "timestamp": "Nov 8, 2026",
+          "url": "https://github.com/SylvenOS/sylven-secure-app/commit/0a7586ab24c947bff7affca3323445686f4165ef"
         },
         {
           "id": "c11d76b945799f707746c61fb11c9379eef58a31",
@@ -588,12 +668,16 @@
       "id": 146006585,
       "avatar_url": "https://avatars.githubusercontent.com/u/146006585?v=4",
       "html_url": "https://github.com/akshaykurve",
-      "totalContributions": 70,
+      "totalContributions": 115,
       "rank": 1,
       "repoBreakdown": [
         {
           "repoName": "SylvenOS-Web",
-          "contributions": 56
+          "contributions": 58
+        },
+        {
+          "repoName": "Github-Studio",
+          "contributions": 43
         },
         {
           "repoName": ".github",
@@ -614,124 +698,124 @@
       ],
       "recentActivity": [
         {
-          "id": "70ac88f4383f4d89f39133eb611d4051b06d2341",
+          "id": "61794378f366545e63f60664e90b0517138c5a94",
           "repoName": "SylvenOS-Web",
           "type": "Commit",
-          "title": "feat: add avatar source utility and caching mechanism",
-          "timestamp": "Nov 7, 2026",
-          "url": "https://github.com/SylvenOS/SylvenOS-Web/commit/70ac88f4383f4d89f39133eb611d4051b06d2341"
+          "title": "Enhance SEO and accessibility with structured data and AI crawler updates (#21)",
+          "timestamp": "Nov 15, 2026",
+          "url": "https://github.com/SylvenOS/SylvenOS-Web/commit/61794378f366545e63f60664e90b0517138c5a94"
         },
         {
-          "id": "4ce3d11271c080c8d38c0d8f4267f7c30ad46df1",
-          "repoName": "SylvenOS-Web",
+          "id": "3a88b52a7ec2b9213fe6a717a1fd425781e5ed06",
+          "repoName": "Github-Studio",
           "type": "Commit",
-          "title": "refactor: update section padding and responsiveness across multiple components",
-          "timestamp": "Nov 7, 2026",
-          "url": "https://github.com/SylvenOS/SylvenOS-Web/commit/4ce3d11271c080c8d38c0d8f4267f7c30ad46df1"
+          "title": "Update contributing instructions and enhance CI with pnpm support (#11)",
+          "timestamp": "Nov 15, 2026",
+          "url": "https://github.com/SylvenOS/Github-Studio/commit/3a88b52a7ec2b9213fe6a717a1fd425781e5ed06"
         },
         {
-          "id": "657179bd1065c93afe03faca92ad1335f0311a66",
-          "repoName": "SylvenOS-Web",
+          "id": "4ab655b983badd0e2582ff3b515d453186da422c",
+          "repoName": "Github-Studio",
           "type": "Commit",
-          "title": "refactor: update styles and accessibility attributes across project components",
-          "timestamp": "Nov 7, 2026",
-          "url": "https://github.com/SylvenOS/SylvenOS-Web/commit/657179bd1065c93afe03faca92ad1335f0311a66"
+          "title": "Update contributing instructions and enhance CI with pnpm support (#10)",
+          "timestamp": "Nov 15, 2026",
+          "url": "https://github.com/SylvenOS/Github-Studio/commit/4ab655b983badd0e2582ff3b515d453186da422c"
         },
         {
-          "id": "4db514d334c428d22dfa13fc97f52483cae15995",
-          "repoName": "SylvenOS-Web",
+          "id": "9bc0b2e7509d5b82e61e1790a9ade3e9ffeb3be3",
+          "repoName": "Github-Studio",
           "type": "Commit",
-          "title": "feat(search): add BM25 search engine for UI/UX style guides with design system generation and persistence options",
-          "timestamp": "Nov 7, 2026",
-          "url": "https://github.com/SylvenOS/SylvenOS-Web/commit/4db514d334c428d22dfa13fc97f52483cae15995"
+          "title": "Update CONTRIBUTING.md and CI workflow for pnpm configuration (#8)",
+          "timestamp": "Nov 9, 2026",
+          "url": "https://github.com/SylvenOS/Github-Studio/commit/9bc0b2e7509d5b82e61e1790a9ade3e9ffeb3be3"
         },
         {
-          "id": "a4d9b2b2c3fd676a7361fbd96d124ddda2a9fb11",
-          "repoName": "SylvenOS-Web",
+          "id": "ec0ed3813c766efc959d0d3ab9bdbf3ab832afb3",
+          "repoName": "Github-Studio",
           "type": "Commit",
-          "title": "Merge branch 'main' of https://github.com/SylvenOS/SylvenOS-Web",
-          "timestamp": "Nov 7, 2026",
-          "url": "https://github.com/SylvenOS/SylvenOS-Web/commit/a4d9b2b2c3fd676a7361fbd96d124ddda2a9fb11"
+          "title": "Update CONTRIBUTING.md and CI workflow for pnpm configuration (#7)",
+          "timestamp": "Nov 9, 2026",
+          "url": "https://github.com/SylvenOS/Github-Studio/commit/ec0ed3813c766efc959d0d3ab9bdbf3ab832afb3"
         },
         {
-          "id": "e62230924960370848c4ce1c527f08089e0bac07",
-          "repoName": "SylvenOS-Web",
+          "id": "90910cde63622130a71f00f8dd025fe6226fc1c5",
+          "repoName": "Github-Studio",
           "type": "Commit",
-          "title": "feat: update technology descriptions and categories for clarity and inclusivity",
-          "timestamp": "Sep 26, 2026",
-          "url": "https://github.com/SylvenOS/SylvenOS-Web/commit/e62230924960370848c4ce1c527f08089e0bac07"
+          "title": "Update CONTRIBUTING.md and CI workflow for repository changes (#6)",
+          "timestamp": "Nov 9, 2026",
+          "url": "https://github.com/SylvenOS/Github-Studio/commit/90910cde63622130a71f00f8dd025fe6226fc1c5"
         },
         {
-          "id": "6746da7514e3aac5684049dcd9dba6800f8c88f6",
-          "repoName": "SylvenOS-Web",
+          "id": "47b737ee9b8d1a0d35cced5d29f747fb7778484f",
+          "repoName": "Github-Studio",
           "type": "Commit",
-          "title": "feat: update technology descriptions and categories for clarity and inclusivity",
-          "timestamp": "Sep 26, 2026",
-          "url": "https://github.com/SylvenOS/SylvenOS-Web/commit/6746da7514e3aac5684049dcd9dba6800f8c88f6"
+          "title": "Update CONTRIBUTING.md and CI workflow for repository changes (#5)",
+          "timestamp": "Nov 9, 2026",
+          "url": "https://github.com/SylvenOS/Github-Studio/commit/47b737ee9b8d1a0d35cced5d29f747fb7778484f"
         },
         {
-          "id": "3f127da5428cd1e7e1f9568e565ef50c8fafe6b7",
-          "repoName": "SylvenOS-Web",
+          "id": "4e515dd8cdcfef04a6af9dad04827e2e470333f5",
+          "repoName": "Github-Studio",
           "type": "Commit",
-          "title": "feat: enhance SEO and site structure with new pages and JSON-LD support",
-          "timestamp": "Sep 26, 2026",
-          "url": "https://github.com/SylvenOS/SylvenOS-Web/commit/3f127da5428cd1e7e1f9568e565ef50c8fafe6b7"
+          "title": "fix: update clone instructions in CONTRIBUTING.md to reflect repository name change (#4)",
+          "timestamp": "Nov 9, 2026",
+          "url": "https://github.com/SylvenOS/Github-Studio/commit/4e515dd8cdcfef04a6af9dad04827e2e470333f5"
         },
         {
-          "id": "350a94a987c0b422cc9eebf030865ebabf861a60",
-          "repoName": "SylvenOS-Web",
+          "id": "a0e49505c3564ac5652428f9b36e1c1b8f6d752e",
+          "repoName": "Github-Studio",
           "type": "Commit",
-          "title": "feat: enhance SEO and site structure with new pages and JSON-LD support",
-          "timestamp": "Sep 26, 2026",
-          "url": "https://github.com/SylvenOS/SylvenOS-Web/commit/350a94a987c0b422cc9eebf030865ebabf861a60"
+          "title": "Refactor code structure for improved readability and maintainability",
+          "timestamp": "Nov 9, 2026",
+          "url": "https://github.com/SylvenOS/Github-Studio/commit/a0e49505c3564ac5652428f9b36e1c1b8f6d752e"
         },
         {
-          "id": "c01d8541c9051e1e468f9b5ed4c49b784c39a836",
-          "repoName": "SylvenOS-Web",
+          "id": "5a551ea799749c09f8777acf3ee8f67d9ba1e4e9",
+          "repoName": "Github-Studio",
           "type": "Commit",
-          "title": "feat: update section padding and hover effects across multiple components",
-          "timestamp": "Sep 26, 2026",
-          "url": "https://github.com/SylvenOS/SylvenOS-Web/commit/c01d8541c9051e1e468f9b5ed4c49b784c39a836"
+          "title": "Refactor code structure for improved readability and maintainability",
+          "timestamp": "Nov 8, 2026",
+          "url": "https://github.com/SylvenOS/Github-Studio/commit/5a551ea799749c09f8777acf3ee8f67d9ba1e4e9"
         },
         {
-          "id": "161bcab5430b912860405b054843470bc18e4e08",
-          "repoName": "SylvenOS-Web",
+          "id": "8c34a8615ba15ffbdc6b0bfb69d7a5fb94f1b59c",
+          "repoName": "Github-Studio",
           "type": "Commit",
-          "title": "feat: update section padding and hover effects across multiple components",
-          "timestamp": "Sep 26, 2026",
-          "url": "https://github.com/SylvenOS/SylvenOS-Web/commit/161bcab5430b912860405b054843470bc18e4e08"
+          "title": "refactor: rename ProfileFoundry to GithubStudio across the application",
+          "timestamp": "Nov 8, 2026",
+          "url": "https://github.com/SylvenOS/Github-Studio/commit/8c34a8615ba15ffbdc6b0bfb69d7a5fb94f1b59c"
         },
         {
-          "id": "84797721e0f24d6477b8d5a88bbe2c5c382e8dc8",
-          "repoName": "SylvenOS-Web",
+          "id": "3d46c1ecf574f68c42eb2eb020222a24bdf70fe1",
+          "repoName": "Github-Studio",
           "type": "Commit",
-          "title": "Refactor and enhance SEO, metadata, and error handling across the application",
-          "timestamp": "Sep 25, 2026",
-          "url": "https://github.com/SylvenOS/SylvenOS-Web/commit/84797721e0f24d6477b8d5a88bbe2c5c382e8dc8"
+          "title": "fix: update README links to point to the live ProfileFoundry site",
+          "timestamp": "Nov 8, 2026",
+          "url": "https://github.com/SylvenOS/Github-Studio/commit/3d46c1ecf574f68c42eb2eb020222a24bdf70fe1"
         },
         {
-          "id": "46612df023f42d2a5474bbe50d28508c71948326",
-          "repoName": "SylvenOS-Web",
+          "id": "d5eebedf8c408ff8e5e81b7aabb6c232e5ad1cfc",
+          "repoName": "Github-Studio",
           "type": "Commit",
-          "title": "Refactor and enhance SEO, metadata, and error handling across the application",
-          "timestamp": "Sep 25, 2026",
-          "url": "https://github.com/SylvenOS/SylvenOS-Web/commit/46612df023f42d2a5474bbe50d28508c71948326"
+          "title": "feat: v1.0.0 release",
+          "timestamp": "Nov 8, 2026",
+          "url": "https://github.com/SylvenOS/Github-Studio/commit/d5eebedf8c408ff8e5e81b7aabb6c232e5ad1cfc"
         },
         {
-          "id": "54af6471ee909916a3f13477eb26a32b9c123222",
-          "repoName": "SylvenOS-Web",
+          "id": "7850b5285380c7478e41e59a2d167cd383586973",
+          "repoName": "Github-Studio",
           "type": "Commit",
-          "title": "feat: Update project details and metadata for SylvenOS-Web, enhancing descriptions and goals",
-          "timestamp": "Aug 1, 2026",
-          "url": "https://github.com/SylvenOS/SylvenOS-Web/commit/54af6471ee909916a3f13477eb26a32b9c123222"
+          "title": "refactor: update tests to target the /app route instead of root",
+          "timestamp": "Nov 8, 2026",
+          "url": "https://github.com/SylvenOS/Github-Studio/commit/7850b5285380c7478e41e59a2d167cd383586973"
         },
         {
-          "id": "f335535dd4613e7f0e74c95e3f31fb96b82ba960",
-          "repoName": "SylvenOS-Web",
+          "id": "d1552c80aecc2d6673a436037083384c24aff1ea",
+          "repoName": "Github-Studio",
           "type": "Commit",
-          "title": "feat: Update project details and metadata for SylvenOS-Web, enhancing descriptions and goals",
-          "timestamp": "Aug 1, 2026",
-          "url": "https://github.com/SylvenOS/SylvenOS-Web/commit/f335535dd4613e7f0e74c95e3f31fb96b82ba960"
+          "title": "feat: enhance documentation with tech stack details and system overview",
+          "timestamp": "Nov 8, 2026",
+          "url": "https://github.com/SylvenOS/Github-Studio/commit/d1552c80aecc2d6673a436037083384c24aff1ea"
         }
       ]
     },
@@ -749,7 +833,7 @@
         },
         {
           "repoName": "sylven-secure-app",
-          "contributions": 22
+          "contributions": 21
         },
         {
           "repoName": ".github",
@@ -758,24 +842,28 @@
         {
           "repoName": "github-mastery",
           "contributions": 2
+        },
+        {
+          "repoName": "Github-Studio",
+          "contributions": 1
         }
       ],
       "recentActivity": [
         {
-          "id": "5f09acbd271c5a6ddbb7db5648835317a6b0a0c0",
-          "repoName": "sylven-secure-app",
+          "id": "f88b31d59b91dd44ee4bcf02bf06e46e2af738ef",
+          "repoName": "Github-Studio",
           "type": "Commit",
-          "title": "refactor: remove Hide App feature and Shizuku integration",
-          "timestamp": "Oct 27, 2026",
-          "url": "https://github.com/SylvenOS/sylven-secure-app/commit/5f09acbd271c5a6ddbb7db5648835317a6b0a0c0"
+          "title": "Update CONTRIBUTING.md and CI workflow for pnpm configuration (#9)",
+          "timestamp": "Nov 12, 2026",
+          "url": "https://github.com/SylvenOS/Github-Studio/commit/f88b31d59b91dd44ee4bcf02bf06e46e2af738ef"
         },
         {
-          "id": "353225be3bf49d36608bc6b4e21193cfc367d83f",
+          "id": "0a7586ab24c947bff7affca3323445686f4165ef",
           "repoName": "sylven-secure-app",
           "type": "Commit",
-          "title": "feat: implement App Lock functionality",
-          "timestamp": "Oct 26, 2026",
-          "url": "https://github.com/SylvenOS/sylven-secure-app/commit/353225be3bf49d36608bc6b4e21193cfc367d83f"
+          "title": "chore: configure repository security and contribution workflows",
+          "timestamp": "Nov 8, 2026",
+          "url": "https://github.com/SylvenOS/sylven-secure-app/commit/0a7586ab24c947bff7affca3323445686f4165ef"
         },
         {
           "id": "c11d76b945799f707746c61fb11c9379eef58a31",
@@ -909,7 +997,7 @@
     }
   ],
   "ecosystem-stats-v1:sylvenos": {
-    "repositories": 6,
+    "repositories": 7,
     "contributors": 3,
     "projects": 1
   }

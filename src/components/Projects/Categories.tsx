@@ -151,14 +151,14 @@ export default function ProjectCategories() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-40px" }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 items-stretch"
+          className="flex flex-wrap justify-center items-stretch gap-6 md:gap-8"
         >
           {categories.map((category, idx) => (
             <m.div
               key={idx}
               variants={cardVariants}
               style={{ '--hover-border': category.color, '--hover-shadow': category.glow } as React.CSSProperties}
-              className="p-8 rounded-[var(--radius-md)] border border-[var(--card-border)] bg-[var(--card-bg)] backdrop-blur-sm relative overflow-hidden flex flex-col justify-between group transition-all duration-[var(--transition-fast)] hover:border-[var(--hover-border)] hover:shadow-[var(--hover-shadow)] hover:bg-[var(--card-hover-bg)]"
+              className="w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.34rem)] p-8 rounded-[var(--radius-md)] border border-[var(--card-border)] bg-[var(--card-bg)] backdrop-blur-sm relative overflow-hidden flex flex-col justify-between group transition-all duration-[var(--transition-fast)] hover:border-[var(--hover-border)] hover:shadow-[var(--hover-shadow)] hover:bg-[var(--card-hover-bg)]"
             >
               <div>
                 {/* Taxonomy Top Row */}
