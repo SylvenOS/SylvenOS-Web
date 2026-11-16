@@ -13,6 +13,24 @@ binding = "ASSETS"
 binding = "WORKER_SELF_REFERENCE"
 service = "sylvenosweb"
 
+# Workers Observability (the "Workers Logs" / "Workers Traces" toggles in the dashboard).
+# Without this block both default to Disabled, and every deploy resets them to what
+# this file says, so enabling them only in the dashboard doesn't stick.
+# head_sampling_rate = 1 records 100% of requests; lower it (e.g. 0.1) if volume or
+# your plan's log/trace limits become a concern.
+[observability]
+enabled = true
+head_sampling_rate = 1
+
+[observability.logs]
+enabled = true
+invocation_logs = true
+head_sampling_rate = 1
+
+[observability.traces]
+enabled = true
+head_sampling_rate = 1
+
 # OPTIONAL persistent cache. Disabled until R2 is enabled on the Cloudflare
 # account (enabling is done in the dashboard); see open-next.config.ts.
 # [[r2_buckets]]
