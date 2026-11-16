@@ -255,7 +255,8 @@ function PinnedLifecycle() {
     return () => observer.disconnect();
   }, []);
 
-  const cardWidth = Math.min(CARD_MAX_WIDTH, viewportWidth * 0.8);
+  // 540px on laptops, growing to 720px on very wide screens so cards don't look lost.
+  const cardWidth = Math.min(viewportWidth * 0.8, Math.max(CARD_MAX_WIDTH, Math.min(720, viewportWidth * 0.28)));
   const startX = viewportWidth / 2 - cardWidth / 2;
   const endX = startX - (TOTAL - 1) * (cardWidth + CARD_GAP);
   const x = useTransform(scrollYProgress, [0, 1], [startX, endX]);
