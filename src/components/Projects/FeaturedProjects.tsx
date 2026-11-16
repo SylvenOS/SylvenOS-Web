@@ -3,6 +3,8 @@
 import { featuredProjects } from "@/lib/type";
 import { m, Variants } from "motion/react";
 import Link from "next/link";
+import { BookOpen, CircleDot, Clock, ExternalLink } from "lucide-react";
+import { FaGithub } from "react-icons/fa6";
 
 
 
@@ -96,117 +98,139 @@ export default function FeaturedProjects({
             // className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 items-stretch "
             className="flex flex-wrap items-stretch justify-center gap-6 md:gap-8"
           >
-            {projects.map((project, idx) => (
-              <m.div
-                key={idx}
-                variants={cardVariants}
-                className="p-6 w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.33%-1.5rem)] md:p-8 rounded-[var(--radius-md)] border border-[var(--card-border)] bg-[var(--card-bg)] backdrop-blur-md flex flex-col justify-between group transition-all duration-[var(--transition-fast)] hover:border-[var(--primary)] hover:shadow-[var(--shadow-md)]"
-              >
-                <div>
-                  {/* Card Header (Logo & Core Meta Status) */}
-                  <div className="flex items-start justify-between gap-4 mb-6">
-                    <img
-                      src={avatarSrc(project.avatarUrl, 40)}
-                      alt={`${project.name} logo`}
-                      width={40} height={40} decoding="async" loading="lazy"
-                      className="w-10 h-10 rounded-[var(--radius-sm)] bg-[var(--surface)] border border-[var(--card-border)] object-cover"
-                    />
-                    <div className="flex flex-col items-end gap-1 text-right">
-                      <span
-                        className={`text-xs font-mono uppercase px-2 py-0.5 rounded-sm border ${
-                          project.status === "Active"
-                            ? "bg-green-500/10 text-green-400 border-green-500/20"
-                            : project.status === "Beta"
-                              ? "bg-amber-500/10 text-amber-400 border-amber-500/20"
-                              : "bg-neutral-500/10 text-neutral-400 border-neutral-500/20"
-                        }`}
-                      >
-                        {project.status}
-                      </span>
-                      <span className="text-xs font-mono text-[var(--disabled)] uppercase">
-                        Diff: {project.difficulty}
-                      </span>
+            {projects.map((project, idx) => {
+              const statusStyle =
+                project.status === "Active"
+                  ? { chip: "bg-green-500/10 text-green-400 border-green-500/25", dot: "bg-green-400" }
+                  : project.status === "Beta"
+                    ? { chip: "bg-amber-500/10 text-amber-400 border-amber-500/25", dot: "bg-amber-400" }
+                    : { chip: "bg-neutral-500/10 text-neutral-400 border-neutral-500/25", dot: "bg-neutral-400" };
+              const visibleTech = project.techStack.slice(0, 4);
+              const extraTech = project.techStack.length - visibleTech.length;
+
+              return (
+                <m.article
+                  key={idx}
+                  variants={cardVariants}
+                  whileHover={{ y: -4 }}
+                  className="relative p-6 w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.33%-1.5rem)] md:p-7 rounded-[var(--radius-md)] border border-[var(--card-border)] bg-[var(--card-bg)] backdrop-blur-md flex flex-col justify-between group overflow-hidden transition-[border-color,box-shadow] duration-[var(--transition-fast)] hover:border-[var(--primary)] hover:shadow-[var(--shadow-md)]"
+                >
+                  {/* Accent edge that lights up on hover */}
+                  <span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--primary)] to-transparent opacity-40 group-hover:opacity-100 transition-opacity"
+                  />
+
+                  <div>
+                    {/* Header: logo + name + status on one aligned row */}
+                    <div className="flex items-center gap-3 mb-4">
+                      <img
+                        src={avatarSrc(project.avatarUrl, 44)}
+                        alt={`${project.name} logo`}
+                        width={44} height={44} decoding="async" loading="lazy"
+                        className="w-11 h-11 shrink-0 rounded-[var(--radius-sm)] bg-[var(--surface)] border border-[var(--card-border)] object-cover"
+                      />
+                      <div className="min-w-0 flex-1">
+                        <h3 className="text-lg font-bold text-[var(--heading)] tracking-tight truncate group-hover:text-[var(--hover-text)] transition-colors">
+                          {project.name}
+                        </h3>
+                        <div className="mt-1 flex items-center gap-2 text-[11px] font-mono uppercase">
+                          <span className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full border ${statusStyle.chip}`}>
+                            <span aria-hidden="true" className={`w-1.5 h-1.5 rounded-full ${statusStyle.dot}`} />
+                            {project.status}
+                          </span>
+                          <span className="text-[var(--disabled)] truncate">{project.difficulty}</span>
+                        </div>
+                      </div>
                     </div>
+
+                    <p className="text-sm text-[var(--subtitle)] leading-relaxed mb-5 line-clamp-3">
+                      {project.description}
+                    </p>
+
+                    {/* Tech stack: capped so cards keep the same rhythm */}
+                    <ul className="flex flex-wrap gap-1.5 mb-6" aria-label="Tech stack">
+                      {visibleTech.map((tech) => (
+                        <li
+                          key={tech}
+                          className="text-[11px] font-mono text-[var(--muted)] px-2 py-0.5 rounded-full bg-[var(--glass)] border border-[var(--card-border)]"
+                        >
+                          {tech}
+                        </li>
+                      ))}
+                      {extraTech > 0 && (
+                        <li className="text-[11px] font-mono text-[var(--disabled)] px-2 py-0.5 rounded-full">
+                          +{extraTech}
+                        </li>
+                      )}
+                    </ul>
                   </div>
 
-                  {/* Identification & Typography */}
-                  <h3 className="text-xl font-bold text-[var(--heading)] mb-2 tracking-tight group-hover:text-[var(--hover-text)] transition-colors">
-                    {project.name}
-                  </h3>
-                  <p className="text-xs md:text-sm text-[var(--subtitle)] leading-relaxed mb-6 line-clamp-3">
-                    {project.description}
-                  </p>
-
-                  {/* Technical Stack Tags */}
-                  <div className="flex flex-wrap gap-1.5 mb-6">
-                    {project.techStack.map((tech, tIdx) => (
-                      <span
-                        key={tIdx}
-                        className="text-xs font-mono text-[var(--muted)] px-2 py-0.5 rounded bg-[var(--glass)] border border-[var(--card-border)]"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Sub-Layer Telemetry Specs */}
-                <div>
-                  <div className="grid grid-cols-2 gap-4 border-t border-[var(--card-border)] pt-4 mb-6 font-mono text-xs">
-                    <div>
-                      <span className="text-[var(--disabled)] block">
-                        UPDATED
-                      </span>
-                      <span className="text-[var(--subtitle)] font-bold">
+                  <div>
+                    {/* Compact meta strip */}
+                    <div className="flex items-center justify-between gap-3 border-t border-[var(--card-border)] pt-4 mb-4 text-xs font-mono text-[var(--subtitle)]">
+                      <span className="inline-flex items-center gap-1.5">
+                        <Clock aria-hidden="true" className="w-3.5 h-3.5 text-[var(--disabled)]" />
+                        <span className="sr-only">Last updated </span>
                         {project.lastUpdated}
                       </span>
-                    </div>
-                    <div>
-                      <span className="text-[var(--disabled)] block">
-                        OPEN_ISSUES
-                      </span>
                       <span
-                        className={`font-bold ${project.openIssues > 0 ? "text-[var(--warning)]" : "text-[var(--success)]"}`}
+                        className={`inline-flex items-center gap-1.5 ${project.openIssues > 0 ? "text-[var(--warning)]" : "text-[var(--success)]"}`}
                       >
-                        {project.openIssues} Issues
+                        <CircleDot aria-hidden="true" className="w-3.5 h-3.5" />
+                        {project.openIssues} {project.openIssues === 1 ? "issue" : "issues"}
                       </span>
                     </div>
-                  </div>
 
-                  {/* Actions/Interconnections Array */}
-                  <div className={`grid ${project.liveUrl ? "grid-cols-3" : "grid-cols-2"} gap-2`}>
-                    <a
-                      href={project.repoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-3 py-2.5 text-center font-mono text-xs font-bold rounded-[var(--radius-sm)] bg-[var(--glass)] hover:bg-[var(--surface)] border border-[var(--card-border)] hover:border-[var(--border)] transition-colors"
-                    >
-                      Repository
-                    </a>
-                    {project.liveUrl && (
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`Open live site for ${project.name}`}
-                        className="px-3 py-2.5 text-center font-mono text-xs font-bold rounded-[var(--radius-sm)] border border-green-500/30 bg-green-500/10 text-green-400 hover:bg-green-500/20 transition-colors"
-                      >
-                        <span aria-hidden="true" className="inline-block w-1.5 h-1.5 mr-1 rounded-full bg-green-400 align-middle" />
-                        Live
-                      </a>
-                    )}
-                    <a
-                      href={project.docsUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-3 py-2.5 text-center font-mono text-xs font-bold rounded-[var(--radius-sm)] bg-[var(--glass)] hover:bg-[var(--primary)] border border-[var(--card-border)] hover:border-transparent hover:text-white transition-all"
-                    >
-                      Docs
-                    </a>
+                    {/* Actions: one clear primary, two quiet secondaries */}
+                    <div className="flex flex-col gap-2">
+                      {project.liveUrl ? (
+                        <a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`Open live site for ${project.name} (opens in a new tab)`}
+                          className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-[var(--radius-sm)] bg-[var(--primary)] text-white font-mono text-xs font-bold uppercase tracking-wider shadow-[var(--shadow-sm)] hover:brightness-110 transition-all"
+                        >
+                          <span className="relative flex w-2 h-2" aria-hidden="true">
+                            <span className="absolute inline-flex h-full w-full rounded-full bg-green-300 opacity-70 animate-ping" />
+                            <span className="relative inline-flex w-2 h-2 rounded-full bg-green-300" />
+                          </span>
+                          Live demo
+                          <ExternalLink aria-hidden="true" className="w-3.5 h-3.5" />
+                        </a>
+                      ) : null}
+                      <div className="grid grid-cols-2 gap-2">
+                        <a
+                          href={project.repoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-[var(--radius-sm)] font-mono text-xs font-bold transition-colors ${
+                            project.liveUrl
+                              ? "border border-[var(--card-border)] bg-[var(--glass)] hover:bg-[var(--surface)] hover:border-[var(--border)]"
+                              : "bg-[var(--primary)] text-white hover:brightness-110"
+                          }`}
+                        >
+                          <FaGithub aria-hidden="true" className="w-3.5 h-3.5" />
+                          Repository
+                          <span className="sr-only"> (opens in a new tab)</span>
+                        </a>
+                        <a
+                          href={project.docsUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-[var(--radius-sm)] border border-[var(--card-border)] bg-[var(--glass)] hover:bg-[var(--surface)] hover:border-[var(--border)] font-mono text-xs font-bold transition-colors"
+                        >
+                          <BookOpen aria-hidden="true" className="w-3.5 h-3.5" />
+                          Docs
+                          <span className="sr-only"> (opens in a new tab)</span>
+                        </a>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </m.div>
-            ))}
+                </m.article>
+              );
+            })}
           </m.div>
         )}
       </div>

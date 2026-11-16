@@ -105,14 +105,14 @@ const RESOURCE_NODES: ResourceNode[] = [
     title: "Project Architecture",
     description: "Understand the application structure, packages, and system design.",
     ctaText: "View Docs",
-    href: "/docs/architecture",
-    isExternal: false
+    href: "https://github.com/SylvenOS/SylvenOS-Web#project-structure",
+    isExternal: true
   },
   {
     title: "Development Setup",
     description: "Requirements, Node version, installation, and environment variables.",
     ctaText: "Setup Project",
-    href: "/docs/setup",
+    href: "/docs/contributing#getting-started",
     isExternal: false
   },
   {
@@ -133,15 +133,15 @@ const RESOURCE_NODES: ResourceNode[] = [
     title: "Code Style Guide",
     description: "Formatting rules, lint setups, folder structure, and naming conventions.",
     ctaText: "View Standards",
-    href: "/docs/style-guide",
+    href: "/docs/contributing#making-changes",
     isExternal: false
   },
   {
     title: "Code of Conduct",
     description: "Community behavioral expectations and respectful open-source collaboration rules.",
     ctaText: "Read Policy",
-    href: "/code-of-conduct",
-    isExternal: false
+    href: "https://github.com/SylvenOS/SylvenOS-Web/blob/main/.github/CODE_OF_CONDUCT.md",
+    isExternal: true
   },
   {
     title: "Discussions",
