@@ -3,6 +3,8 @@
 import { useState, useMemo } from "react";
 import { m, AnimatePresence } from "motion/react";
 import Link from "next/link";
+import { ArrowRight, ExternalLink } from "lucide-react";
+import { FaGithub } from "react-icons/fa6";
 import { ProjectData } from "@/lib/type";
 
 
@@ -72,7 +74,7 @@ export default function ProjectExplorer({ projects = [] }: ProjectExplorerProps)
         
         {/* Header Segment */}
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-xs font-mono font-bold tracking-widest text-[var(--accent)] uppercase px-3 py-1 bg-[var(--glass)] border border-[var(--card-border)] rounded-full inline-block mb-4">
+          <span className="eyebrow mb-4">
             MESH_EXPLORER_V5
           </span>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-[var(--heading)] mb-4">
@@ -188,111 +190,131 @@ export default function ProjectExplorer({ projects = [] }: ProjectExplorerProps)
   }`}
 >
   <AnimatePresence mode="popLayout">
-    {filteredAndSortedProjects.map((project) => (
-      <m.div
+    {filteredAndSortedProjects.map((project) => {
+      const statusStyle =
+        project.status === "Active"
+          ? { chip: "bg-green-500/10 text-green-400 border-green-500/25", dot: "bg-green-400" }
+          : project.status === "Planning"
+            ? { chip: "bg-blue-500/10 text-blue-400 border-blue-500/25", dot: "bg-blue-400" }
+            : project.status === "Completed"
+              ? { chip: "bg-purple-500/10 text-purple-400 border-purple-500/25", dot: "bg-purple-400" }
+              : { chip: "bg-neutral-500/10 text-neutral-400 border-neutral-500/25", dot: "bg-neutral-400" };
+
+      return (
+      <m.article
         layout
         key={project.name}
         initial={{ opacity: 0, scale: 0.96 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.96 }}
         transition={{ duration: 0.25 }}
-        className="p-6 rounded-[var(--radius-md)] border border-[var(--card-border)] bg-[var(--card-bg)] backdrop-blur-md flex flex-col justify-between items-center text-center group transition-all duration-[var(--transition-fast)] hover:border-[var(--primary)] hover:shadow-[var(--shadow-md)]"
+        className="surface-card p-6 backdrop-blur-md flex flex-col justify-between group overflow-hidden"
       >
-        <div className="w-full flex flex-col items-center">
-          <div className="flex flex-col items-center gap-3 mb-5 w-full">
+        <div className="w-full">
+          <div className="flex items-center gap-3 mb-4">
             <img
-              src={avatarSrc(project.avatarUrl, 48)}
+              src={avatarSrc(project.avatarUrl, 44)}
               alt={`${project.name} logo`}
-              width={48} height={48} decoding="async" loading="lazy"
-              className="w-12 h-12 rounded-[var(--radius-sm)] bg-[var(--surface)] border border-[var(--card-border)] object-cover shadow-[var(--shadow-sm)]"
+              width={44} height={44} decoding="async" loading="lazy"
+              className="w-11 h-11 shrink-0 rounded-[var(--radius-sm)] bg-[var(--surface)] border border-[var(--card-border)] object-cover"
             />
-            <div className="flex items-center justify-center gap-1.5 flex-wrap">
-              <span className={`text-xs font-mono uppercase px-2 py-0.5 rounded-sm border ${
-                project.status === "Active" ? "bg-green-500/10 text-green-400 border-green-500/20" :
-                project.status === "Planning" ? "bg-blue-500/10 text-blue-400 border-blue-500/20" :
-                project.status === "Completed" ? "bg-purple-500/10 text-purple-400 border-purple-500/20" :
-                "bg-neutral-500/10 text-neutral-400 border-neutral-500/20"
-              }`}>
-                {project.status}
-              </span>
-              <span className="text-xs font-mono text-[var(--disabled)] uppercase bg-[var(--glass)] border border-[var(--card-border)] px-2 py-0.5 rounded-sm">
-                {project.difficulty}
-              </span>
+            <div className="min-w-0 flex-1">
+              <h3 className="text-lg font-bold text-[var(--heading)] tracking-tight truncate group-hover:text-[var(--accent)] transition-colors">
+                {project.name}
+              </h3>
+              <div className="mt-1 flex items-center gap-2 text-[11px] font-mono uppercase">
+                <span className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full border ${statusStyle.chip}`}>
+                  <span aria-hidden="true" className={`w-1.5 h-1.5 rounded-full ${statusStyle.dot}`} />
+                  {project.status}
+                </span>
+                <span className="text-[var(--disabled)] truncate">{project.difficulty}</span>
+              </div>
             </div>
           </div>
 
-          <h3 className="text-lg font-bold text-[var(--heading)] mb-2 tracking-tight group-hover:text-[var(--accent)] transition-colors w-full truncate">
-            {project.name}
-          </h3>
-          <p className="text-xs text-[var(--subtitle)] leading-relaxed mb-5 line-clamp-2 max-w-xs mx-auto">
+          <p className="text-sm text-[var(--subtitle)] leading-relaxed mb-5 line-clamp-3">
             {project.description}
           </p>
 
-          <div className="flex flex-wrap justify-center gap-1 mb-5 w-full">
-            {project.techStack.slice(0, 3).map((tech) => (
-              <span
+          <ul className="flex flex-wrap gap-1.5 mb-5" aria-label="Tech stack">
+            {project.techStack.slice(0, 4).map((tech) => (
+              <li
                 key={tech}
-                className="text-xs font-mono text-[var(--muted)] px-2 py-0.5 rounded bg-[var(--glass)] border border-[var(--card-border)]"
+                className="text-[11px] font-mono text-[var(--muted)] px-2 py-0.5 rounded-full bg-[var(--glass)] border border-[var(--card-border)]"
               >
                 {tech}
-              </span>
+              </li>
             ))}
-            {project.techStack.length > 3 && (
-              <span className="text-xs font-mono text-[var(--disabled)] px-2 py-0.5 rounded bg-[var(--glass)]">
-                +{project.techStack.length - 3}
-              </span>
+            {project.techStack.length > 4 && (
+              <li className="text-[11px] font-mono text-[var(--disabled)] px-2 py-0.5">
+                +{project.techStack.length - 4}
+              </li>
             )}
-          </div>
+          </ul>
         </div>
 
         <div className="w-full">
-          <div className="grid grid-cols-3 gap-2 border-t border-[var(--card-border)] pt-4 mb-4 font-mono text-xs text-center">
+          <dl className="grid grid-cols-3 gap-2 border-t border-[var(--card-border)] pt-4 mb-4 font-mono text-xs">
             <div>
-              <span className="text-[var(--disabled)] block">LANG</span>
-              <span className="text-[var(--subtitle)] font-bold truncate block">{project.language}</span>
+              <dt className="text-[var(--disabled)]">LANG</dt>
+              <dd className="text-[var(--subtitle)] font-bold truncate">{project.language}</dd>
             </div>
             <div>
-              <span className="text-[var(--disabled)] block">STARS</span>
-              <span className="text-[var(--subtitle)] font-bold">{project.stars}</span>
+              <dt className="text-[var(--disabled)]">STARS</dt>
+              <dd className="text-[var(--subtitle)] font-bold tabular">{project.stars}</dd>
             </div>
             <div>
-              <span className="text-[var(--disabled)] block">CONTRB</span>
-              <span className="text-[var(--subtitle)] font-bold">{project.contributorsCount}</span>
+              <dt className="text-[var(--disabled)]">CONTRIB</dt>
+              <dd className="text-[var(--subtitle)] font-bold tabular">{project.contributorsCount}</dd>
             </div>
-          </div>
+          </dl>
 
-          {/* Core CTAs Routing Matrix */}
-          <div className={`grid ${project.liveUrl ? "grid-cols-3" : "grid-cols-2"} gap-2 pt-3 border-t border-[var(--card-border)]`}>
-            <a
-              href={project.repoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="py-2.5 px-2 text-center font-mono text-xs font-bold rounded border border-[var(--card-border)] text-[var(--subtitle)] hover:bg-[var(--glass)] hover:text-[var(--heading)] transition-all uppercase"
-            >
-              Repo ↗
-            </a>
+          {/* Actions: one clear primary, quiet secondaries */}
+          <div className="flex flex-col gap-2">
             {project.liveUrl && (
               <a
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={`Open live site for ${project.name}`}
-                className="py-2.5 px-2 text-center font-mono text-xs font-bold rounded border border-green-500/30 bg-green-500/10 text-green-400 hover:bg-green-500/20 transition-all uppercase"
+                aria-label={`Open live site for ${project.name} (opens in a new tab)`}
+                className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-[var(--radius-sm)] bg-[linear-gradient(135deg,var(--btn-primary-bg),var(--btn-primary-hover))] text-white ring-1 ring-inset ring-white/15 font-mono text-xs font-bold uppercase tracking-wider shadow-[var(--shadow-sm)] hover:brightness-110 transition-all"
               >
-                <span aria-hidden="true" className="inline-block w-1.5 h-1.5 mr-1 rounded-full bg-green-400 align-middle" />
-                Live ↗
+                <span className="relative flex w-2 h-2" aria-hidden="true">
+                  <span className="absolute inline-flex h-full w-full rounded-full bg-green-300 opacity-70 animate-ping" />
+                  <span className="relative inline-flex w-2 h-2 rounded-full bg-green-300" />
+                </span>
+                Live demo
+                <ExternalLink aria-hidden="true" className="w-3.5 h-3.5" />
               </a>
             )}
-            <Link
-              href={`/projects/${project.slug}`}
-              className="py-2.5 px-2 text-center font-mono text-xs font-bold rounded bg-[var(--primary)] hover:bg-[var(--primary)]/90 text-white transition-all uppercase tracking-wider"
-            >
-              Details ➔
-            </Link>
+            <div className="grid grid-cols-2 gap-2">
+              <a
+                href={project.repoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-[var(--radius-sm)] border border-[var(--card-border)] bg-[var(--glass)] hover:bg-[var(--hover-bg)] hover:border-[var(--hover-border)] font-mono text-xs font-bold transition-colors"
+              >
+                <FaGithub aria-hidden="true" className="w-3.5 h-3.5" />
+                Repo
+                <span className="sr-only"> (opens in a new tab)</span>
+              </a>
+              <Link
+                href={`/projects/${project.slug}`}
+                className={`inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-[var(--radius-sm)] font-mono text-xs font-bold transition-all ${
+                  project.liveUrl
+                    ? "border border-[var(--card-border)] bg-[var(--glass)] hover:bg-[var(--hover-bg)] hover:border-[var(--hover-border)]"
+                    : "bg-[linear-gradient(135deg,var(--btn-primary-bg),var(--btn-primary-hover))] text-white ring-1 ring-inset ring-white/15 hover:brightness-110"
+                }`}
+              >
+                Details
+                <ArrowRight aria-hidden="true" className="w-3.5 h-3.5" />
+              </Link>
+            </div>
           </div>
         </div>
-      </m.div>
-    ))}
+      </m.article>
+      );
+    })}
   </AnimatePresence>
 </m.div>
         {filteredAndSortedProjects.length === 0 && (

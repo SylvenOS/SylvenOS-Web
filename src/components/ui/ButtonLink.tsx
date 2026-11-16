@@ -12,13 +12,13 @@ interface ButtonLinkProps {
 }
 
 const BASE =
-  "group inline-flex min-h-12 items-center whitespace-nowrap justify-center gap-2 rounded-xl px-6 text-[15px] font-semibold no-underline cursor-pointer transition-[background-color,border-color,box-shadow,color] duration-200";
+  "group inline-flex min-h-12 items-center whitespace-nowrap justify-center gap-2 rounded-xl px-6 text-[15px] font-semibold no-underline cursor-pointer transition-[background-color,border-color,box-shadow,color,transform] duration-200 active:scale-[0.98] motion-reduce:active:scale-100";
 
 const VARIANTS = {
   primary:
-    "bg-[var(--btn-primary-bg)] text-white shadow-[var(--shadow-sm)] hover:bg-[var(--btn-primary-hover)] hover:shadow-[var(--glow-primary)]",
+    "bg-[linear-gradient(135deg,var(--btn-primary-bg),var(--btn-primary-hover))] text-white shadow-[var(--shadow-sm)] ring-1 ring-inset ring-white/15 hover:brightness-110 hover:shadow-[var(--glow-primary)]",
   secondary:
-    "border border-[var(--hover-border)] bg-transparent text-[var(--heading)] hover:bg-[var(--hover-bg)] hover:border-[var(--accent)]",
+    "border border-[var(--hover-border)] bg-[var(--glass)] text-[var(--heading)] backdrop-blur-sm hover:bg-[var(--hover-bg)] hover:border-[var(--accent)]",
 };
 
 /**

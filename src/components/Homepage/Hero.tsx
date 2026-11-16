@@ -15,13 +15,7 @@ export default async function Hero() {
       <div className="mb-20 flex w-full flex-col items-center justify-between gap-14 lg:flex-row lg:gap-[60px]">
         {/* Left Text Block */}
         <div className="z-10 flex w-full max-w-[620px] flex-col items-center text-center lg:items-start lg:text-left">
-          <p className="mb-7 inline-flex items-center gap-2.5 rounded-full border border-[var(--card-border)] bg-[var(--glass)] px-[18px] py-2 text-sm font-medium text-[var(--subtitle)]">
-            <span
-              aria-hidden="true"
-              className="h-2 w-2 rounded-full bg-[var(--logo)]"
-            />
-            Community driven · Open source
-          </p>
+          <p className="eyebrow mb-7">Community driven · Open source</p>
 
           <h1
             id="hero-title"
@@ -31,7 +25,7 @@ export default async function Hero() {
             <br />
             Build.
             <br />
-            <span className="text-[var(--accent)]">Educate.</span>
+            <span className="text-gradient">Educate.</span>
           </h1>
 
           <p className="mb-10 max-w-[52ch] text-base leading-[1.75] text-[var(--subtitle)] md:text-lg">
